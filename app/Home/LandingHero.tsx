@@ -4,9 +4,22 @@ import * as React from "react";
 import SegmentedToggle from "@/components/SegmentedToggle";
 import ProfileCarousel from "@/components/ProfileCarousel";
 
+// Define the interface locally so we don't need to change imports
+interface ProfileCard {
+  name: string;
+  role: string;
+  company: string;
+  companySub: string;
+  avatar: string;
+  image: string;
+  avatarBg: string;
+}
+
 export default function LandingHero() {
   const [mode, setMode] = React.useState("talent");
-  const [selectedExpert, setSelectedExpert] = React.useState(null);
+  
+  // FIX: Type the state here so it can hold the card data
+  const [selectedExpert, setSelectedExpert] = React.useState<ProfileCard | null>(null);
 
   const content = React.useMemo(() => {
     if (mode === "services") {
@@ -126,7 +139,8 @@ export default function LandingHero() {
 
         {/* Carousel */}
         <div className="mt-8 rounded-2xl bg-white/30 p-4 backdrop-blur ring-1 ring-white/50">
-          <ProfileCarousel onSelect={setSelectedExpert} />
+          {/* TypeScript now understands that setSelectedExpert accepts the ProfileCard type */}
+          <ProfileCarousel onSelect={(card: ProfileCard) => setSelectedExpert(card)} />
         </div>
       </div>
     </section>

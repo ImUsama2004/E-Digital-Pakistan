@@ -1,8 +1,24 @@
 "use client";
 import * as React from "react";
-("/images/image1.jpg");
 
-const DEFAULT_CARDS = [
+// 1. Define what a Profile Card looks like
+interface ProfileCard {
+  name: string;
+  role: string;
+  company: string;
+  companySub: string;
+  avatar: string;
+  image: string;
+  avatarBg: string;
+}
+
+// 2. Define the Props for the main component
+interface ProfileCarouselProps {
+  cards?: ProfileCard[];
+  onSelect?: (card: ProfileCard) => void;
+}
+
+const DEFAULT_CARDS: ProfileCard[] = [
   {
     name: "Meryl Da Silva",
     role: "Marketing Strategist",
@@ -41,7 +57,10 @@ const DEFAULT_CARDS = [
   },
 ];
 
-export default function ProfileCarousel({ cards = DEFAULT_CARDS, onSelect }) {
+export default function ProfileCarousel({ 
+  cards = DEFAULT_CARDS, 
+  onSelect 
+}: ProfileCarouselProps) {
   const [active, setActive] = React.useState(0);
 
   React.useEffect(() => {
@@ -75,7 +94,7 @@ export default function ProfileCarousel({ cards = DEFAULT_CARDS, onSelect }) {
             <button
               key={i}
               onClick={() => setActive(i)}
-              className={`min-w-[300px] h-[320px] shrink-0 overflow-hidden rounded-2xl border bg-white shadow-sm transition-all ${
+              className={`min-w-75 h-80 shrink-0 overflow-hidden rounded-2xl border bg-white shadow-sm transition-all ${
                 i === active
                   ? "border-slate-300 ring-2 ring-slate-200"
                   : "border-slate-200 hover:border-slate-300"
@@ -98,7 +117,12 @@ export default function ProfileCarousel({ cards = DEFAULT_CARDS, onSelect }) {
   );
 }
 
-function CardWithImage({ card }) {
+// 3. Define props for the sub-component
+interface CardWithImageProps {
+  card: ProfileCard;
+}
+
+function CardWithImage({ card }: CardWithImageProps) {
   return (
     <div className="flex h-full flex-col">
       {/* Top Image */}
@@ -115,7 +139,7 @@ function CardWithImage({ card }) {
         <img
           src={card.image}
           alt={card.name}
-          className={`h-10 w-12 shrink-0 rounded-full bg-gradient-to-br ${card.avatarBg} object-cover`}
+          className={`h-10 w-12 shrink-0 rounded-full bg-linear-to-br ${card.avatarBg} object-cover`}
         />
 
         <div className="min-w-0">

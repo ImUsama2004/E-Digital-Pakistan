@@ -14,7 +14,16 @@ import {
   X,
 } from "lucide-react";
 
-const ITEMS = [
+// 1. Define the shape of an individual item
+interface TalentItem {
+  title: string;
+  body: string;
+  icon: React.ElementType; // This allows Lucide icons to be passed as components
+  wide?: boolean;
+}
+
+// 2. Apply the TalentItem[] type to your constant array
+const ITEMS: TalentItem[] = [
   {
     title: "Developers",
     body: "Seasoned software engineers, coders, and architects with expertise across hundreds of technologies.",
@@ -59,7 +68,8 @@ const ITEMS = [
 ];
 
 export default function TalentGridSection() {
-  const [activeItem, setActiveItem] = useState(null);
+  // 3. Initialize state as either null OR a TalentItem
+  const [activeItem, setActiveItem] = useState<TalentItem | null>(null);
 
   return (
     <>
