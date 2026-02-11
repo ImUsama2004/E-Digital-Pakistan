@@ -14,7 +14,6 @@ export default function Page() {
     <main className="">
     <LandingHero />
     <TalentGridSection />
-
     <AmazingTeam/>
     <HiringMadeEasy/>
     <TalentNetwork/>

@@ -38,9 +38,13 @@ export default function Header() {
             <Link href="#">About Us</Link>
           </nav>
 
-          {/* Desktop Actions */}
+         {/* Desktop Actions */}
           <div className="hidden lg:flex items-center gap-4 text-sm text-black">
-            <Link href="#">Apply as Talent</Link>
+            {/* UPDATE THIS LINE BELOW */}
+            <Link href="/apply" className="hover:text-emerald-600 transition">
+              Apply as Talent
+            </Link>
+            
             <button className="bg-emerald-500 text-black px-4 py-2 rounded-md font-medium hover:bg-emerald-600 transition">
               Hire Top Talent
             </button>
@@ -117,19 +121,25 @@ export default function Header() {
           </nav>
 
           {/* Mobile Buttons */}
-          <div className="flex flex-col p-6 gap-3 mt-auto border-t bg-slate-50">
-            <button className="w-full bg-emerald-500 text-black py-3 rounded-md font-semibold hover:bg-emerald-600 transition">
-              Hire Top Talent
+        <div className="flex flex-col p-6 gap-3 mt-auto border-t bg-slate-50">
+          <button className="w-full bg-emerald-500 text-black py-3 rounded-md font-semibold hover:bg-emerald-600 transition">
+            Hire Top Talent
+          </button>
+          <div className="flex gap-3">
+            {/* Change this button to a Link */}
+            <Link 
+              href="/apply" 
+              onClick={() => setOpen(false)} // Closes the mobile menu when clicked
+              className="flex-1 border border-slate-300 py-3 rounded-md font-medium text-black hover:bg-white transition text-center"
+            >
+              Apply as Talent
+            </Link>
+            
+            <button className="flex-1 border border-slate-300 py-3 rounded-md font-medium text-black hover:bg-white transition">
+              Log In
             </button>
-            <div className="flex gap-3">
-              <button className="flex-1 border border-slate-300 py-3 rounded-md font-medium text-black hover:bg-white transition">
-                Apply as Talent
-              </button>
-              <button className="flex-1 border border-slate-300 py-3 rounded-md font-medium text-black hover:bg-white transition">
-                Log In
-              </button>
-            </div>
           </div>
+        </div>
         </div>
       )}
     </>
