@@ -97,7 +97,7 @@ export default function TalentGridSection() {
                   key={item.title}
                   whileHover={{ y: -6 }}
                   transition={{ type: "spring", stiffness: 300 }}
-                  className={`rounded-2xl border border-slate-200 bg-white p-6 shadow-sm ${
+                  className={`border border-slate-200 bg-white p-6 shadow-sm ${
                     item.wide ? "sm:col-span-2 lg:col-span-2" : ""
                   }`}
                 >

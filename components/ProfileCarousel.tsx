@@ -1,8 +1,10 @@
 "use client";
-import * as React from "react";
 
-// 1. Define what a Profile Card looks like
-interface ProfileCard {
+import React, { useEffect, useRef, useState } from "react";
+
+/* ================= TYPES ================= */
+
+export interface ProfileCard {
   name: string;
   role: string;
   company: string;
@@ -12,11 +14,12 @@ interface ProfileCard {
   avatarBg: string;
 }
 
-// 2. Define the Props for the main component
 interface ProfileCarouselProps {
   cards?: ProfileCard[];
   onSelect?: (card: ProfileCard) => void;
 }
+
+/* ================= DEFAULT DATA ================= */
 
 const DEFAULT_CARDS: ProfileCard[] = [
   {
@@ -25,7 +28,7 @@ const DEFAULT_CARDS: ProfileCard[] = [
     company: "Google",
     companySub: "Previously at",
     avatar: "/avatars/meryl.jpg",
-    image: "/images/image1.jpg",
+    image: "/",
     avatarBg: "from-indigo-200 to-indigo-50",
   },
   {
@@ -34,7 +37,7 @@ const DEFAULT_CARDS: ProfileCard[] = [
     company: "AWS",
     companySub: "Previously at",
     avatar: "/avatars/erita.jpg",
-    image: "/images/image1.jpg",
+    image: "/",
     avatarBg: "from-rose-200 to-rose-50",
   },
   {
@@ -43,7 +46,7 @@ const DEFAULT_CARDS: ProfileCard[] = [
     company: "SpaceX",
     companySub: "Previously at",
     avatar: "/avatars/casey.jpg",
-    image: "/images/image1.jpg",
+    image: "/",
     avatarBg: "from-emerald-200 to-emerald-50",
   },
   {
@@ -52,81 +55,113 @@ const DEFAULT_CARDS: ProfileCard[] = [
     company: "Goldman Sachs",
     companySub: "Previously at",
     avatar: "/avatars/arvind.jpg",
-    image: "/images/image1.jpg",
+    image: "/",
     avatarBg: "from-sky-200 to-sky-50",
   },
 ];
 
-export default function ProfileCarousel({ 
-  cards = DEFAULT_CARDS, 
-  onSelect 
-}: ProfileCarouselProps) {
-  const [active, setActive] = React.useState(0);
+/* ================= MAIN COMPONENT ================= */
 
-  React.useEffect(() => {
+const ProfileCarousel: React.FC<ProfileCarouselProps> = ({
+  cards = DEFAULT_CARDS,
+  onSelect,
+}) => {
+  const [active, setActive] = useState<number>(0);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+
+  /* ===== Auto Slide ===== */
+  useEffect(() => {
+    if (!cards.length) return;
+
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % cards.length);
     }, 5000);
+
     return () => clearInterval(interval);
   }, [cards.length]);
 
-  React.useEffect(() => {
-    onSelect?.(cards[active]);
+  /* ===== Scroll To Active Card ===== */
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const cardWidth = 320;
+    const gap = 16;
+
+    container.scrollTo({
+      left: active * (cardWidth + gap),
+      behavior: "smooth",
+    });
+
+    if (cards[active]) {
+      onSelect?.(cards[active]);
+    }
   }, [active, cards, onSelect]);
 
-  const prev = () => setActive((i) => (i - 1 + cards.length) % cards.length);
-  const next = () => setActive((i) => (i + 1) % cards.length);
+  const handlePrev = (): void => {
+    setActive((prev) => (prev - 1 + cards.length) % cards.length);
+  };
+
+  const handleNext = (): void => {
+    setActive((prev) => (prev + 1) % cards.length);
+  };
 
   return (
     <div className="w-full">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-4">
         {/* Prev Button */}
         <button
-          onClick={prev}
-          className="hidden lg:grid h-10 w-10 place-items-center rounded-full border bg-black text-white font-bold shadow-sm hover:bg-slate-800"
+          onClick={handlePrev}
+          className="hidden lg:grid h-10 w-10 place-items-center border bg-black text-white font-bold shadow-sm hover:bg-slate-800 transition"
         >
           ‹
         </button>
 
         {/* Carousel */}
-        <div className="flex gap-4 overflow-x-auto lg:overflow-x-hidden scrollbar-hide px-3 py-4">
-          {cards.map((c, i) => (
+        <div
+          ref={scrollRef}
+          className="flex gap-4 overflow-x-auto lg:overflow-x-hidden px-3 py-4 scroll-smooth"
+        >
+          {cards.map((card, index) => (
             <button
-              key={i}
-              onClick={() => setActive(i)}
-              className={`min-w-75 h-80 shrink-0 overflow-hidden rounded-2xl border bg-white shadow-sm transition-all ${
-                i === active
-                  ? "border-slate-300 ring-2 ring-slate-200"
+              key={index}
+              onClick={() => setActive(index)}
+              className={`w-[320px] h-80 shrink-0 overflow-hidden border bg-white shadow-sm transition-all duration-300 ${
+                index === active
+                  ? "border-slate-400 ring-2 ring-slate-200 scale-105"
                   : "border-slate-200 hover:border-slate-300"
               }`}
             >
-              <CardWithImage card={c} />
+              <CardWithImage card={card} />
             </button>
           ))}
         </div>
 
         {/* Next Button */}
         <button
-          onClick={next}
-          className="hidden lg:grid h-10 w-10 place-items-center rounded-full border bg-black text-white font-bold shadow-sm hover:bg-slate-800"
+          onClick={handleNext}
+          className="hidden lg:grid h-10 w-10 place-items-center border bg-black text-white font-bold shadow-sm hover:bg-slate-800 transition"
         >
           ›
         </button>
       </div>
     </div>
   );
-}
+};
 
-// 3. Define props for the sub-component
+export default ProfileCarousel;
+
+/* ================= CARD COMPONENT ================= */
+
 interface CardWithImageProps {
   card: ProfileCard;
 }
 
-function CardWithImage({ card }: CardWithImageProps) {
+const CardWithImage: React.FC<CardWithImageProps> = ({ card }) => {
   return (
     <div className="flex h-full flex-col">
       {/* Top Image */}
-      <div className="h-50 w-full bg-slate-100 overflow-hidden flex items-center justify-center">
+      <div className="h-48 w-full bg-slate-100 overflow-hidden flex items-center justify-center">
         <img
           src={card.image}
           alt={card.name}
@@ -136,24 +171,31 @@ function CardWithImage({ card }: CardWithImageProps) {
 
       {/* Bottom Content */}
       <div className="flex flex-1 items-start gap-3 p-4">
+        {/* Avatar (kept circular — remove rounded-full if you want square) */}
         <img
           src={card.image}
           alt={card.name}
-          className={`h-10 w-12 shrink-0 rounded-full bg-linear-to-br ${card.avatarBg} object-cover`}
+          className={`h-10 w-10 shrink-0 rounded-full bg-linear-to-br ${card.avatarBg} object-cover`}
         />
 
         <div className="min-w-0">
-          <div className="truncate text-base font-semibold text-slate-900">
+          <p className="truncate text-base font-semibold text-slate-900">
             {card.name}
-          </div>
-          <div className="truncate text-sm text-slate-600">{card.role}</div>
+          </p>
 
-          <div className="mt-2 text-xs text-slate-500">{card.companySub}</div>
-          <div className="truncate text-sm font-semibold text-slate-900">
+          <p className="truncate text-sm text-slate-600">
+            {card.role}
+          </p>
+
+          <p className="mt-2 text-xs text-slate-500">
+            {card.companySub}
+          </p>
+
+          <p className="truncate text-sm font-semibold text-slate-900">
             {card.company}
-          </div>
+          </p>
         </div>
       </div>
     </div>
   );
-}
+};

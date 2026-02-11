@@ -17,12 +17,13 @@ interface ProfileCard {
 
 export default function LandingHero() {
   const [mode, setMode] = React.useState("talent");
-  
+
   // FIX: Type the state here so it can hold the card data
-  const [selectedExpert, setSelectedExpert] = React.useState<ProfileCard | null>(null);
+  const [selectedExpert, setSelectedExpert] =
+    React.useState<ProfileCard | null>(null);
 
   const content = React.useMemo(() => {
-    if (mode === "services") {
+    if (mode === "products") {
       return {
         eyebrow: "I'm looking for",
         headline: (
@@ -57,8 +58,8 @@ export default function LandingHero() {
           <SegmentedToggle
             label={content.eyebrow}
             options={[
-              { label: "Talent", value: "talent" },
-              { label: "Consulting & Services", value: "services" },
+              { label: "Services", value: "services" },
+              { label: "Products", value: "products" },
             ]}
             value={mode}
             onChange={setMode}
@@ -92,7 +93,7 @@ export default function LandingHero() {
 
           {/* Right – Smaller Card */}
           <div className="lg:col-span-5 flex items-center sm:justify-center">
-            <div className="w-full max-w-sm rounded-3xl bg-white/80 p-4 lg:p-5 shadow-lg ring-1 ring-black/5 backdrop-blur">
+            <div className="w-full max-w-sm rounded- p-4 lg:p-5 shadow-lg ring-1 ring-black/5 backdrop-blur">
               {/* Image */}
               <div className="flex justify-center">
                 <div className="h-52 lg:h-64 w-full overflow-hidden rounded-2xl bg-slate-100">
@@ -140,7 +141,9 @@ export default function LandingHero() {
         {/* Carousel */}
         <div className="mt-8 rounded-2xl bg-white/30 p-4 backdrop-blur ring-1 ring-white/50">
           {/* TypeScript now understands that setSelectedExpert accepts the ProfileCard type */}
-          <ProfileCarousel onSelect={(card: ProfileCard) => setSelectedExpert(card)} />
+          <ProfileCarousel
+            onSelect={(card: ProfileCard) => setSelectedExpert(card)}
+          />
         </div>
       </div>
     </section>
