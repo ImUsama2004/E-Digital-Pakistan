@@ -15,6 +15,12 @@ export default function ApplyForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+  const toggleConfirmPassword = () => setShowConfirmPassword(!showConfirmPassword);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted:", form);
@@ -95,37 +101,64 @@ export default function ApplyForm() {
         </div>
 
         {/* Password */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Password
-          </label>
-          <input
-            type="password"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            required
-            className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 p-2.5 outline-none"
-          />
+        <div className="relative">
+           <label className="block text-sm font-medium text-gray-700">
+              Password
+            </label>
+          
+            <div className="relative mt-1">
+            <input
+              // Key logic: toggle type based on state
+              type={showPassword ? "text" : "password"} 
+              name="password"
+              value={form.password}
+              onChange={handleChange}
+              required
+              className="block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 p-2.5 pr-12 outline-none" // added pr-12 for space
+             />
+             {/* Show/Hide Button */}
+            <button
+              type="button"
+              onClick={togglePassword}
+              className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 text-emerald-600 font-semibold hover:text-emerald-800 transition-colors"
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+        </div>
+
           <p className="mt-2 text-xs text-gray-500 leading-relaxed">
             Must contain at least 8 characters, 1 uppercase, 1 lowercase, 1 number, and 1 special character.
           </p>
         </div>
 
         {/* Confirm Password */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Confirm password
-          </label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={form.confirmPassword}
-            onChange={handleChange}
-            required
-            className="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 p-2.5 outline-none"
-          />
+       <div>
+        <label className="block text-sm font-medium text-gray-700">
+          Confirm password
+        </label>
+
+          {/* 1. This wrapper must be relative */}
+          <div className="relative mt-1"> 
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              value={form.confirmPassword}
+              onChange={handleChange}
+              required
+              // 2. Added pr-12 so text doesn't go under the button
+              className="block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-emerald-500 focus:border-emerald-500 p-2.5 outline-none pr-12" 
+            />
+    
+            <button
+              type="button"
+              onClick={toggleConfirmPassword}
+              // 3. This button is now absolute to the div above
+              className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 text-emerald-600 font-semibold hover:text-emerald-800 transition-colors"
+            >
+           {showConfirmPassword ? "Hide" : "Show"}
+            </button>
         </div>
+    </div>
 
         {/* Terms */}
         <p className="text-xs text-gray-500 italic">
