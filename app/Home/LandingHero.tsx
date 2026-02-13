@@ -23,7 +23,7 @@ export default function LandingHero() {
     React.useState<ProfileCard | null>(null);
 
   const content = React.useMemo(() => {
-    if (mode === "products") {
+    if (mode === "services") {
       return {
         eyebrow: "I'm looking for",
         headline: (
@@ -58,8 +58,8 @@ export default function LandingHero() {
           <SegmentedToggle
             label={content.eyebrow}
             options={[
-              { label: "Services", value: "services" },
               { label: "Products", value: "products" },
+              { label: "Services", value: "services" },
             ]}
             value={mode}
             onChange={setMode}

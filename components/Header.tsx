@@ -33,11 +33,11 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex gap-6 text-sm text-black">
-            {/* <Link href="#">Hire Talent</Link> */}
             <Link href="#">Consulting & Services</Link>
-            {/* <Link href="#">Clients</Link> */}
-            <Link href="#">Blog</Link>
             <Link href="#">About Us</Link>
+            <Link href="#">Blog</Link>
+            {/* <Link href="#">Hire Talent</Link> */}
+            {/* <Link href="#">Clients</Link> */}
           </nav>
 
           {/* Desktop Actions */}
