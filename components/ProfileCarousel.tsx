@@ -27,8 +27,8 @@ const DEFAULT_CARDS: ProfileCard[] = [
     role: "Marketing Strategist",
     company: "Google",
     companySub: "Previously at",
-    avatar: "/avatars/meryl.jpg",
-    image: "/",
+    avatar: "/images/image1.jpg",
+    image: "/images/image1.jpg", // Corrected path
     avatarBg: "from-indigo-200 to-indigo-50",
   },
   {
@@ -36,8 +36,8 @@ const DEFAULT_CARDS: ProfileCard[] = [
     role: "Project Manager",
     company: "AWS",
     companySub: "Previously at",
-    avatar: "/avatars/erita.jpg",
-    image: "/",
+    avatar: "/images/image1.jpg",
+    image: "/images/image1.jpg", // Added path
     avatarBg: "from-rose-200 to-rose-50",
   },
   {
@@ -45,8 +45,8 @@ const DEFAULT_CARDS: ProfileCard[] = [
     role: "Product Manager",
     company: "SpaceX",
     companySub: "Previously at",
-    avatar: "/avatars/casey.jpg",
-    image: "/",
+    avatar: "/images/image1.jpg",
+    image: "/images/image1.jpg", // Added path
     avatarBg: "from-emerald-200 to-emerald-50",
   },
   {
@@ -54,8 +54,8 @@ const DEFAULT_CARDS: ProfileCard[] = [
     role: "FP&A Expert",
     company: "Goldman Sachs",
     companySub: "Previously at",
-    avatar: "/avatars/arvind.jpg",
-    image: "/",
+    avatar: "/images/image1.jpg",
+    image: "/images/image1.jpg", // Added path
     avatarBg: "from-sky-200 to-sky-50",
   },
 ];
@@ -165,20 +165,20 @@ const CardWithImage: React.FC<CardWithImageProps> = ({ card }) => {
         <img
           src={card.image}
           alt={card.name}
-          className="h-full w-full object-contain"
+          className="h-full w-full object-cover" // Changed to cover for better filling
         />
       </div>
 
       {/* Bottom Content */}
       <div className="flex flex-1 items-start gap-3 p-4">
-        {/* Avatar (kept circular — remove rounded-full if you want square) */}
+        {/* Profile Avatar */}
         <img
-          src={card.image}
+          src={card.avatar} // Corrected: should use card.avatar here
           alt={card.name}
-          className={`h-10 w-10 shrink-0 rounded-full bg-linear-to-br ${card.avatarBg} object-cover`}
+          className={`h-10 w-10 shrink-0 rounded-full bg-linear-to-br ${card.avatarBg} object-cover border border-slate-200`}
         />
 
-        <div className="min-w-0">
+        <div className="min-w-0 text-left">
           <p className="truncate text-base font-semibold text-slate-900">
             {card.name}
           </p>
