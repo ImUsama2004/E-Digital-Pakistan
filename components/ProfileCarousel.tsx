@@ -27,8 +27,8 @@ const DEFAULT_CARDS: ProfileCard[] = [
     role: "Marketing Strategist",
     company: "Google",
     companySub: "Previously at",
-    avatar: "/images/image1.jpg",
-    image: "/images/image1.jpg", // Corrected path
+    avatar: "/",
+    image: "/",
     avatarBg: "from-indigo-200 to-indigo-50",
   },
   {
@@ -36,8 +36,8 @@ const DEFAULT_CARDS: ProfileCard[] = [
     role: "Project Manager",
     company: "AWS",
     companySub: "Previously at",
-    avatar: "/images/image1.jpg",
-    image: "/images/image1.jpg", // Added path
+    avatar: "/",
+    image: "/", // Added path
     avatarBg: "from-rose-200 to-rose-50",
   },
   {
@@ -45,8 +45,8 @@ const DEFAULT_CARDS: ProfileCard[] = [
     role: "Product Manager",
     company: "SpaceX",
     companySub: "Previously at",
-    avatar: "/images/image1.jpg",
-    image: "/images/image1.jpg", // Added path
+    avatar: "/",
+    image: "/", // Added path
     avatarBg: "from-emerald-200 to-emerald-50",
   },
   {
@@ -54,8 +54,8 @@ const DEFAULT_CARDS: ProfileCard[] = [
     role: "FP&A Expert",
     company: "Goldman Sachs",
     companySub: "Previously at",
-    avatar: "/images/image1.jpg",
-    image: "/images/image1.jpg", // Added path
+    avatar: "/",
+    image: "/", // Added path
     avatarBg: "from-sky-200 to-sky-50",
   },
 ];
@@ -183,13 +183,9 @@ const CardWithImage: React.FC<CardWithImageProps> = ({ card }) => {
             {card.name}
           </p>
 
-          <p className="truncate text-sm text-slate-600">
-            {card.role}
-          </p>
+          <p className="truncate text-sm text-slate-600">{card.role}</p>
 
-          <p className="mt-2 text-xs text-slate-500">
-            {card.companySub}
-          </p>
+          <p className="mt-2 text-xs text-slate-500">{card.companySub}</p>
 
           <p className="truncate text-sm font-semibold text-slate-900">
             {card.company}
