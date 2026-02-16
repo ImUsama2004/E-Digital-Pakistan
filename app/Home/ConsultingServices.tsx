@@ -18,7 +18,7 @@ export default function ConsultingServices() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-semibold text-[#1a2b3b] mb-4">
-            Explore Our Consulting & Services
+            Digital Solutions for Development
           </h2>
           <p className="text-gray-500 text-lg max-w-3xl mx-auto">
             We offer a comprehensive, customizable portfolio of services that help you solve your business challenges and achieve your strategic goals.
