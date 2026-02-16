@@ -30,8 +30,7 @@ export default function Header() {
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex gap-6 text-sm text-black">
-            <Link href="#">Consulting & Services</Link>
-            {/* <Link href="#">Clients</Link> */}
+            <Link href="/services">Consulting & Services</Link>
             <Link href="#">Blog</Link>
             <Link href="#">About Us</Link>
             {/* <Link href="/Solutions">Digital Solutions</Link> */}
@@ -42,17 +41,24 @@ export default function Header() {
             <Link href="/apply" className="hover:text-emerald-600 transition">
               Apply as Talent
             </Link>
-            <button className="bg-emerald-500 text-black px-4 py-2 rounded-md font-medium hover:bg-emerald-600 transition">
+            
+            <Link 
+              href="/hiretalent"
+              className="bg-emerald-500 text-black px-4 py-2 rounded-md font-medium hover:bg-emerald-600 transition"
+            >
               Hire Talent
-            </button>
+            </Link>
             <Link href="#">Log In</Link>
           </div>
 
           {/* Hamburger & Mobile Button */}
           <div className="flex items-center">
-            <button className="lg:hidden bg-emerald-500 text-black py-2 px-4 mr-4 rounded-md font-medium hover:bg-emerald-600 transition cursor-pointer text-sm">
+            <Link 
+              href="/apply"
+              className="lg:hidden bg-emerald-500 text-black py-2 px-4 mr-4 rounded-md font-medium hover:bg-emerald-600 transition cursor-pointer text-sm"
+            >
               Apply
-            </button>
+            </Link>
             <button
               className="lg:hidden text-2xl text-black p-2"
               onClick={() => setOpen(!open)}
@@ -69,13 +75,15 @@ export default function Header() {
         <div className="fixed inset-0 z-60 bg-white flex flex-col overflow-y-auto">
           {/* Top Bar in Mobile Menu */}
           <div className="flex items-center justify-between px-6 h-16 border-b shrink-0">
-            <Image
-              src="/images/EDP-logo-blue.png"
-              alt="EDP Logo"
-              width={100}
-              height={32}
-              className="h-8 w-auto object-contain"
-            />
+            <Link href="/" onClick={() => setOpen(false)}>
+              <Image
+                src="/images/EDP-logo-blue.png"
+                alt="EDP Logo"
+                width={100}
+                height={32}
+                className="h-8 w-auto object-contain"
+              />
+            </Link>
             <button
               className="text-3xl text-black p-2"
               onClick={() => setOpen(false)}
@@ -87,34 +95,39 @@ export default function Header() {
           {/* Menu Items */}
           <nav className="flex flex-col w-full border-b">
             {[
-              { name: "Hire Talent", hasSub: true },
-              { name: "Consulting & Services", hasSub: true },
-              { name: "Clients", hasSub: false },
-              { name: "Blog", hasSub: false },
-              { name: "About Us", hasSub: false },
+              { name: "Hire Talent", hasSub: true, path: "/hiretalent" },
+              { name: "Consulting & Services", hasSub: true, path: "#" },
+              { name: "Clients", hasSub: false, path: "#" },
+              { name: "Blog", hasSub: false, path: "#" },
+              { name: "About Us", hasSub: false, path: "#" },
             ].map((item) => (
               <div key={item.name} className="border-b">
-                <button
-                  onClick={() =>
-                    item.hasSub ? toggleExpand(item.name) : setOpen(false)
-                  }
-                  className="w-full flex justify-between items-center px-6 py-4 text-left text-black hover:bg-slate-50"
-                >
-                  <span className="font-medium">{item.name}</span>
+                <div className="flex w-full items-center">
+                  <Link
+                    href={item.path}
+                    className="grow px-6 py-4 text-left text-black font-medium hover:bg-slate-50"
+                    onClick={() => !item.hasSub && setOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
                   {item.hasSub && (
-                    <span className="text-xl text-slate-400">
+                    <button 
+                      onClick={() => toggleExpand(item.name)}
+                      className="px-6 py-4 text-xl text-slate-400 border-l"
+                    >
                       {expanded[item.name] ? "−" : "▸"}
-                    </span>
+                    </button>
                   )}
-                </button>
+                </div>
+                
                 {item.hasSub && expanded[item.name] && (
-                  <div className="pl-6 pb-4 flex flex-col space-y-3 text-black bg-slate-50 pt-2">
+                  <div className="pl-6 pb-4 flex flex-col space-y-3 text-black bg-slate-50 pt-2 border-t">
                     <Link
-                      href="#"
+                      href="/hiretalent"
                       className="text-sm py-1"
                       onClick={() => setOpen(false)}
                     >
-                      Subitem 1
+                      Overview
                     </Link>
                     <Link
                       href="#"
@@ -131,9 +144,13 @@ export default function Header() {
 
           {/* Mobile Buttons */}
           <div className="flex flex-col p-6 gap-3 mt-auto border-t bg-slate-50">
-            <button className="w-full bg-emerald-500 text-black py-3 rounded-md font-semibold hover:bg-emerald-600 transition">
+            <Link 
+              href="/hiretalent"
+              onClick={() => setOpen(false)}
+              className="w-full bg-emerald-500 text-black py-3 rounded-md font-semibold hover:bg-emerald-600 transition text-center"
+            >
               Hire Top Talent
-            </button>
+            </Link>
             <div className="flex gap-3">
               <Link
                 href="/apply"
