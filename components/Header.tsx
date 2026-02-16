@@ -17,10 +17,7 @@ export default function Header() {
       <header className="sticky top-0 z-50 bg-white border-b">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* LOGO SECTION */}
-          <Link
-            href="/"
-            className="flex items-center shrink-0"
-          >
+          <Link href="/" className="flex items-center shrink-0">
             <Image
               src="/images/EDP-logo-blue.png"
               alt="EDP Logo"
@@ -37,9 +34,10 @@ export default function Header() {
             {/* <Link href="#">Clients</Link> */}
             <Link href="#">Blog</Link>
             <Link href="#">About Us</Link>
+            {/* <Link href="/Solutions">Digital Solutions</Link> */}
           </nav>
 
-         {/* Desktop Actions */}
+          {/* Desktop Actions */}
           <div className="hidden lg:flex items-center gap-4 text-sm text-black">
             <Link href="/apply" className="hover:text-emerald-600 transition">
               Apply as Talent
@@ -137,8 +135,8 @@ export default function Header() {
               Hire Top Talent
             </button>
             <div className="flex gap-3">
-              <Link 
-                href="/apply" 
+              <Link
+                href="/apply"
                 onClick={() => setOpen(false)}
                 className="flex-1 border border-slate-300 py-3 rounded-md font-medium text-black hover:bg-white transition text-center"
               >
