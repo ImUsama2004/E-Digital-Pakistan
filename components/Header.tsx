@@ -34,7 +34,6 @@ export default function Header() {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex gap-6 text-sm text-black">
             <Link href="#">Consulting & Services</Link>
-            {/* <Link href="#">Clients</Link> */}
             <Link href="#">Blog</Link>
             <Link href="#">About Us</Link>
           </nav>
@@ -44,9 +43,12 @@ export default function Header() {
             <Link href="/apply" className="hover:text-emerald-600 transition">
               Apply as Talent
             </Link>
-            <button className="bg-emerald-500 text-black px-4 py-2 rounded-md font-medium hover:bg-emerald-600 transition">
+            
+            <Link 
+            href="/hiretalent"
+            className="bg-emerald-500 text-black px-4 py-2 rounded-md font-medium hover:bg-emerald-600 transition">
               Hire Talent
-            </button>
+            </Link>
             <Link href="#">Log In</Link>
           </div>
 
