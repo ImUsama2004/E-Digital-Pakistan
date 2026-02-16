@@ -14,11 +14,11 @@ export default function Footer() {
           {/* Hire Talent Column */}
           <div className="lg:col-span-3">
             {/* Darker borders and text to contrast with green bg */}
-            <h4 className="font-bold text-sm mb-8 tracking-wide border-b border-[#00bc71] pb-4">Hire Talent</h4>
+            <h4 className="font-bold text-white text-sm mb-8 tracking-wide border-b border-[#00bc71] pb-4">Hire Talent</h4>
             <ul className="space-y-4">
               {footerLinks.hireTalent.map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="text-sm text-black/85 hover:text-white transition-colors">
+                  <a href={link.href} className="text-sm text-white hover:underline transition-colors">
                     {link.name}
                   </a>
                 </li>
@@ -28,13 +28,13 @@ export default function Footer() {
 
           {/* Featured Skills (3 Columns) */}
           <div className="lg:col-span-7 ">
-            <h4 className="font-bold text-sm mb-8 tracking-wide border-b border-[#00bc71] pb-4">Featured Skills</h4>
+            <h4 className="font-bold text-white text-sm mb-8 tracking-wide border-b border-[#00bc71] pb-4">Featured Skills</h4>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
               {footerLinks.featuredSkills.map((column, idx) => (
                 <ul key={idx} className="space-y-4">
                   {column.map((link) => (
                     <li key={link.name}>
-                      <a href={link.href} className="text-sm text-black/85 hover:text-white transition-colors">
+                      <a href={link.href} className="text-sm text-white hover:underline transition-colors">
                         {link.name}
                       </a>
                     </li>
@@ -46,12 +46,12 @@ export default function Footer() {
 
           {/* About Column */}
           <div className="lg:col-span-2">
-            <h4 className="font-bold text-sm mb-8 tracking-wide border-b border-[#00bc71] pb-4">About</h4>
+            <h4 className="font-bold text-white text-sm mb-8 tracking-wide border-b border-[#00bc71] pb-4">About</h4>
             <ul className="space-y-4 ">
               {footerLinks.about.map((link) => (
                 <li key={link.name}
                 className='hover:bg-green-500'>
-                  <a href={link.href} className="text-sm text-black/85 hover:text-white  transition-colors">
+                  <a href={link.href} className="text-sm text-white hover:underline  transition-colors">
                     {link.name}
                   </a>
                 </li>
@@ -66,7 +66,7 @@ export default function Footer() {
             
             {/* Logo & Tagline */}
             <div className="flex items-center gap-4">
-              <div className="text-2xl font-black flex items-center gap-2">
+              <div className="text-2xl flex items-center gap-2">
                 <span className="text-white bg-green-500 px-5 py-1 rounded-3xl">E-Digital Pakistan</span>
                 <span className="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>
               </div>
