@@ -105,7 +105,7 @@ const ProfileCarousel: React.FC<ProfileCarouselProps> = ({
   const handleNext = (): void => {
     setActive((prev) => (prev + 1) % cards.length);
   };
-
+// 
   return (
     <div className="w-full">
       <div className="flex items-center gap-4">
