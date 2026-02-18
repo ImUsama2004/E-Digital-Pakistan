@@ -97,7 +97,7 @@ export default function Header() {
       </header>
 
       {/* MOBILE MENU OVERLAY */}
-      <div className={`fixed inset-0 z-[60] bg-white transition-transform duration-300 ease-in-out ${open ? 'translate-x-0' : 'translate-x-full'} lg:hidden flex flex-col`}>
+      <div className={`fixed inset-0 z-60 bg-white transition-transform duration-300 ease-in-out ${open ? 'translate-x-0' : 'translate-x-full'} lg:hidden flex flex-col`}>
         <div className="flex items-center justify-between px-6 h-20 border-b">
           <Image src="/images/EDP-logo-blue.png" alt="Logo" width={100} height={32} />
           <button onClick={() => setOpen(false)} className="p-2 text-3xl">&times;</button>

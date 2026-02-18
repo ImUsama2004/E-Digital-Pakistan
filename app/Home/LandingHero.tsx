@@ -40,10 +40,11 @@ export default function LandingHero() {
     return {
       eyebrow: "I'm looking for",
       headline: (
-        <>
-          Hire the <span className="underline underline-offset-4">Top 3%</span>{" "}
-          of the World’s Talent<span className="align-super text-xs">™️</span>
-        </>
+        <p className="text-4xl sm:text-5xl md:text-6xl font-black text-black leading-[1.1] mb-6 tracking-tighter">
+          Hire the
+          <span className="text-emerald-500 italic"> Top 3% </span>
+          of the World’s Talent
+        </p>
       ),
       body: "An exclusive network of the top software developers, designers, marketing experts, management consultants, product managers, and project managers.",
       primaryCta: "Hire Top Talent",
