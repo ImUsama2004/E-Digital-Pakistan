@@ -56,11 +56,11 @@ export default function ConsultingServices() {
                 onClick={() => setActiveTab(cat.id)}
                 className={`flex-1 flex cursor-pointer items-center justify-center gap-3 py-6 px-4 text-sm font-bold transition-all duration-300 ${
                   isActive
-                    ? "bg-white text-black border-b-4 border-green-600 shadow-sm"
+                    ? "bg-white text-black border-b-4 border-[#2aecb2] shadow-sm"
                     : "bg-gray-50/50 text-gray-400 hover:bg-gray-50 border-b-4 border-transparent"
                 }`}
               >
-                <div className={`p-2 rounded-lg ${isActive ? "bg-green-600 text-white" : "bg-gray-200 text-gray-400"}`}>
+                <div className={`p-2 rounded-lg ${isActive ? "bg-[#2aecb2] text-white" : "bg-gray-200 text-gray-400"}`}>
                   {Icon && <Icon size={18} />}
                 </div>
                 <span className="tracking-wider uppercase text-[11px] md:text-xs">{cat.label}</span>
@@ -85,10 +85,10 @@ export default function ConsultingServices() {
                 className="group relative bg-white border-r border-b border-gray-100 flex flex-col h-100 md:h-112.5 transition-all duration-300 hover:shadow-2xl hover:z-10"
               >
                 <div className="p-8 md:p-10 pb-4">
-                  <div className="mb-6 text-gray-300 group-hover:text-green-600 transition-colors duration-300">
+                  <div className="mb-6 text-gray-300 group-hover:text-[#2aecb2] transition-colors duration-300">
                     <ServiceIcon size={40} strokeWidth={1.2} />
                   </div>
-                  <h3 className="text-lg md:text-xl font-bold text-gray-800 group-hover:text-green-700">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-800 group-hover:text-[#2aecb2]">
                     {service.title}
                   </h3>
                 </div>
@@ -103,7 +103,7 @@ export default function ConsultingServices() {
                 </div>
                 
                 <div className="absolute bottom-0 left-0 w-full p-8 md:p-10 bg-white border-t border-gray-50 translate-y-2 group-hover:translate-y-0 transition-transform">
-                  <button className="flex items-center gap-2 text-xs font-black text-green-600 uppercase tracking-widest group-hover:gap-4 transition-all">
+                  <button className="flex items-center gap-2 text-xs font-black text-[#2aecb2] uppercase tracking-widest group-hover:gap-4 transition-all">
                     Explore Service 
                     <Icons.ArrowRight size={16} />
                   </button>
