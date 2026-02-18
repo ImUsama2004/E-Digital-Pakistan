@@ -1,150 +1,127 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Code2,
-  Layers,
-  BarChart4,
-  Briefcase,
-  LayoutGrid,
-  Box,
-  Users2,
-  Zap,
-  X,
-  ArrowUpRight,
+import React from "react";
+import { 
+  Code2, 
+  PenTool, 
+  Filter, 
+  BarChart3, 
+  Calendar, 
+  Network, 
+  TrendingUp 
 } from "lucide-react";
 
 interface TalentItem {
   title: string;
   body: string;
   icon: React.ElementType;
-  wide?: boolean;
+  className?: string;
 }
 
 const ITEMS: TalentItem[] = [
-  { title: "Developers", body: "Seasoned software engineers and architects with expertise across hundreds of technologies.", icon: Code2 },
-  { title: "Designers", body: "Expert UI, UX, and Visual designers specializing in high-conversion digital products.", icon: Layers },
-  { title: "Marketing Experts", body: "Specialists in growth marketing, brand strategy, and data-driven content execution.", icon: BarChart4 },
-  { title: "Management Consultants", body: "Finance experts, business strategists, and financial modelers for complex operations.", icon: Briefcase },
-  { title: "Project Managers", body: "Technical project leads and scrum masters utilizing industry-standard PM methodologies.", icon: LayoutGrid },
-  { title: "Product Managers", body: "Digital product owners with deep expertise in lifecycle management and roadmap scaling.", icon: Box },
-  { title: "Sales Experts", body: "Strategic lead generation experts, SDRs, and customer success managers.", icon: Users2 },
-  { title: "Plus Thousands More Skills", body: "Whatever specialization your business requires, we provide the top 3% of global talent.", icon: Zap, wide: true },
+  { 
+    title: "Developers", 
+    body: "Seasoned software engineers, coders, and architects with expertise across hundreds of technologies.", 
+    icon: Code2 
+  },
+  { 
+    title: "Designers", 
+    body: "Expert UI, UX, Visual, and Interaction designers as well as a wide range of illustrators, animators, and more.", 
+    icon: PenTool 
+  },
+  { 
+    title: "Marketing Experts", 
+    body: "Experts in digital marketing, growth marketing, content creation, market research, brand strategy execution, social media marketing, and more.", 
+    icon: Filter 
+  },
+  { 
+    title: "Management Consultants", 
+    body: "Finance experts, business strategists, M&A consultants, financial modelers, and more, with expertise ranging from market research to FP&A.", 
+    icon: BarChart3 
+  },
+  { 
+    title: "Project Managers", 
+    body: "Digital and technical project managers, scrum masters, and more with expertise in numerous PM tools, frameworks, and styles.", 
+    icon: Calendar 
+  },
+  { 
+    title: "Product Managers", 
+    body: "Digital product managers, scrum product owners with expertise in numerous industries like banking, healthcare, ecommerce, and more.", 
+    icon: Network 
+  },
+  { 
+    title: "Sales Experts", 
+    body: "Lead generation experts, SDRs, sales reps, BDRs, customer success managers, sales consultants, account managers, and more.", 
+    icon: TrendingUp,
+    className: "lg:border-b-0" 
+  },
 ];
 
 export default function TalentGridSection() {
-  const [activeItem, setActiveItem] = useState<TalentItem | null>(null);
-
   return (
-    <section className="bg-white py-24">
-      <div className="mx-auto max-w-6xl px-4">
+    <section className="bg-white py-20 font-sans">
+      <div className="mx-auto max-w-7xl px-6">
         
-        {/* REFINED HEADER */}
-        <div className="mb-20">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-3 mb-6"
-          >
-            <div className="h-px w-12 bg-[#2aecb2]" />
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#2aecb2]">Our Network</span>
-          </motion.div>
-
-          <h2 className="text-5xl md:text-8xl font-black text-slate-900 tracking-tighter leading-[0.9] mb-8">
-            Leverage <br />
-            <span className="text-[#2aecb2] italic font-serif">World-class Talent</span>
+        {/* HEADER SECTION */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-semibold text-[#262d3d] mb-6">
+            Leverage World-class Talent
           </h2>
-          
-          <p className="max-w-2xl text-slate-500 text-lg md:text-xl leading-relaxed font-medium">
-            We provide access to a globally distributed network of elite business, 
-            design, and technology professionals.
+          <p className="max-w-3xl mx-auto text-[#6a7381] text-lg leading-relaxed">
+            We are the largest, globally distributed network of top business, design, 
+            and technology talent, ready to tackle your most important initiatives.
           </p>
         </div>
 
-        {/* REFINED GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-slate-100 overflow-hidden">
+        {/* MAIN GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-l border-gray-200">
           {ITEMS.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <motion.article
+              <div
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.05 }}
-                onClick={() => setActiveItem(item)}
-                className={`group relative border-r border-b border-slate-100 p-10 cursor-pointer transition-all duration-500 hover:bg-slate-50/80 flex flex-col justify-between ${
-                  item.wide ? "lg:col-span-2" : ""
-                }`}
+                className={`p-10 border-r border-b border-gray-200 flex flex-col min-h-[280px] hover:bg-gray-50/50 transition-colors ${item.className || ""}`}
               >
-                <div>
-                  <div className="mb-10 text-slate-400 group-hover:text-[#2aecb2] transition-colors duration-500 transform group-hover:scale-110 origin-left">
-                    <Icon size={36} strokeWidth={1} />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:translate-x-1 transition-transform">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-slate-400 group-hover:text-slate-600 transition-colors">
-                    {item.body}
-                  </p>
-                </div>
-
-                <div className="mt-12 flex items-center justify-between">
-                  <span className="text-[10px] font-bold tracking-widest text-slate-300 uppercase group-hover:text-slate-900 transition-colors">
-                    Explore Details
-                  </span>
-                  <div className="h-8 w-8 rounded-full border border-slate-100 flex items-center justify-center group-hover:bg-slate-900 group-hover:border-slate-900 transition-all duration-300">
-                    <ArrowUpRight size={14} className="text-slate-300 group-hover:text-white transition-all group-hover:rotate-45" />
+                <div className="flex items-start justify-between mb-8">
+                  <div className="text-blue-500/80 bg-blue-50/30 p-2 rounded-sm border border-blue-100/50">
+                    <Icon size={32} strokeWidth={1.2} />
                   </div>
                 </div>
-              </motion.article>
+                
+                <h3 className="text-xl font-bold text-[#262d3d] mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-[15px] leading-relaxed text-[#6a7381]">
+                  {item.body}
+                </p>
+              </div>
             );
           })}
+
+          {/* THE "PLUS THOUSANDS" SECTION - SPANS REMAINING COLS */}
+          <div className="lg:col-span-2 p-10 bg-[#f8f9fb] border-r border-b border-gray-200 flex flex-col justify-center">
+             <h3 className="text-xl font-bold text-[#262d3d] mb-3">
+               Plus Thousands More Skills
+             </h3>
+             <p className="text-[15px] text-[#6a7381]">
+               Whatever skill or specialization your business requires, we have the top talent to meet your needs.
+             </p>
+          </div>
+        </div>
+
+        {/* FOOTER LINKS */}
+        <div className="mt-16 text-center border-t border-gray-100 pt-8">
+            <p className="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-4">
+                GET EVEN MORE FROM TOPTAL
+            </p>
+            <p className="text-gray-600 text-sm mb-2">
+                Explore additional ways to level up your company&apos;s growth and success with Toptal
+            </p>
+            <a href="#" className="text-blue-600 text-sm font-medium hover:underline">
+                Learn more about Toptal&apos;s Coaching
+            </a>
         </div>
       </div>
-
-      {/* MODAL */}
-      <AnimatePresence>
-        {activeItem && (
-          <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setActiveItem(null)}
-              className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
-            />
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 30 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 30 }}
-              className="relative w-full max-w-xl bg-white p-10 md:p-16 shadow-2xl rounded-2xl z-101"
-            >
-              <button 
-                onClick={() => setActiveItem(null)} 
-                className="absolute right-8 top-8 p-2 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-900 transition-all"
-              >
-                <X size={20} strokeWidth={2} />
-              </button>
-
-              <div className="mb-10 inline-flex p-4 rounded-2xl bg-emerald-50 text-emerald-500">
-                <activeItem.icon size={40} strokeWidth={1.5} />
-              </div>
-              
-              <h3 className="text-4xl font-black text-slate-900 mb-6 tracking-tight">{activeItem.title}</h3>
-              <p className="text-slate-500 text-lg leading-relaxed mb-10">{activeItem.body}</p>
-              
-              <button className="w-full group bg-slate-900 text-white px-8 py-5 rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-emerald-600 transition-all flex items-center justify-center gap-3">
-                Hire Top {activeItem.title}
-                <ArrowUpRight size={18} className="group-hover:rotate-45 transition-transform" />
-              </button>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }
