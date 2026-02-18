@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { div } from 'framer-motion/client';
 
 interface ServiceItem {
   id: number;
@@ -52,7 +53,7 @@ const services: ServiceItem[] = [
 
 const ServicesGrid: React.FC = () => {
   return (
-    <section className="bg-white py-20 px-6 md:px-16 max-w-[1440px] mx-auto">
+    <section className="bg-white py-20 px-6 md:px-16 max-w-360 mx-auto">
       <div className="flex flex-col lg:flex-row gap-16">
         
         {/* Left Column: Headline and Staggered Cards */}
@@ -84,33 +85,41 @@ const ServicesGrid: React.FC = () => {
     </section>
   );
 };
-
 const ServiceCard = ({ service }: { service: ServiceItem }) => (
+
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     className="group bg-white border border-[#eeeeee] rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl"
   >
-    <div className="relative h-[300px] w-full overflow-hidden">
+    
+    {/* 1. Image Height - Fixed at 300px (h-75) */}
+    <div className="relative h-75 w-full overflow-hidden">
       <img 
         src={service.image} 
         alt={service.title} 
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
     </div>
-    <div className="p-10">
-      <h3 className="text-[24px] font-bold text-[#000000] mb-4">
-        {service.title}
-      </h3>
-      <p className="text-[#666666] text-[16px] leading-[1.6] mb-8">
-        {service.description}
-      </p>
+
+    {/* text */}
+    <div className="p-10 h-80 flex flex-col justify-between">
+      <div>
+        <h3 className="text-[24px] font-bold text-[#000000] mb-4">
+          {service.title}
+        </h3>
+        <p className="text-[#666666] text-[16px] leading-[1.6]">
+          {service.description}
+        </p>
+      </div>
+      
+      {/* This will now always stay at the very bottom of the p-10 area */}
       <div className="w-12 h-12 flex items-center justify-center rounded-full border border-[#dddddd] group-hover:bg-black group-hover:text-white transition-all duration-300">
         <ArrowRight size={20} />
       </div>
     </div>
   </motion.div>
-);
+);;
 
 export default ServicesGrid;

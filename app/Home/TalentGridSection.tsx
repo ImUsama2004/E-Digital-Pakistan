@@ -80,7 +80,7 @@ export default function TalentGridSection() {
             return (
               <div
                 key={item.title}
-                className={`p-10 border-r border-b border-gray-200 flex flex-col min-h-[280px] hover:bg-gray-50/50 transition-colors ${item.className || ""}`}
+                className={`p-10 border-r border-b border-gray-200 flex flex-col min-h-70 hover:bg-gray-50/50 transition-colors ${item.className || ""}`}
               >
                 <div className="flex items-start justify-between mb-8">
                   <div className="text-blue-500/80 bg-blue-50/30 p-2 rounded-sm border border-blue-100/50">
