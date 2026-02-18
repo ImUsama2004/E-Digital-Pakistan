@@ -36,7 +36,7 @@ const HeroSection: React.FC = () => {
         We Create Solutions <br />
         That Are <br />
         
-        <span className="relative inline-block text-cyan-500 min-h-[1.2em] min-w-[280px]">
+        <span className="relative inline-block text-cyan-500 min-h-[1.2em] min-w-70">
           <AnimatePresence mode="wait">
             <motion.span
               key={words[index]}
@@ -71,7 +71,7 @@ const HeroSection: React.FC = () => {
         {/* Quote Button */}
         <button className="group flex items-center justify-between gap-6 pl-8 pr-2 py-2 rounded-full border-2 border-cyan-400 text-cyan-600 font-bold hover:bg-cyan-50 transition-all">
           GET A QUOTE
-          <div className="bg-cyan-500 rounded-full p-3 text-white transition-transform group-hover:rotate-[-45deg]">
+          <div className="bg-cyan-500 rounded-full p-3 text-white transition-transform group-hover:rotate-45">
             <ArrowRight size={20} />
           </div>
         </button>
@@ -79,7 +79,7 @@ const HeroSection: React.FC = () => {
         {/* Work Button */}
         <button className="group flex items-center justify-between gap-6 pl-8 pr-2 py-2 rounded-full bg-black text-white font-bold hover:bg-neutral-900 transition-all">
           OUR WORK
-          <div className="bg-white rounded-full p-3 text-black transition-transform group-hover:rotate-[-45deg]">
+          <div className="bg-white rounded-full p-3 text-black transition-transform group-hover:rotate-45">
             <ArrowRight size={20} />
           </div>
         </button>

@@ -66,7 +66,7 @@ const ServicesPage: React.FC = () => {
   return (
     <div className="bg-gray-50">
       {/* Hero Header */}
-      <header className="relative bg-gradient-to-r from-green-600 to-green-500 text-white py-36 px-4 sm:px-6 lg:px-20 text-center overflow-hidden">
+      <header className="relative bg-linear-to-r from-green-600 to-green-500 text-white py-36 px-4 sm:px-6 lg:px-20 text-center overflow-hidden">
         <h1 className="text-5xl sm:text-6xl font-extrabold mb-4">
           We Create Technologies That Are Dynamic
         </h1>
@@ -87,7 +87,7 @@ const ServicesPage: React.FC = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="bg-white p-6 rounded-3xl shadow-md hover:shadow-lg transition transform hover:scale-105 flex flex-col items-center text-center min-h-[420px]"
+              className="bg-white p-6 rounded-3xl shadow-md hover:shadow-lg transition transform hover:scale-105 flex flex-col items-center text-center min-h-105"
             >
               <img
                 src={service.img}
@@ -114,7 +114,7 @@ const ServicesPage: React.FC = () => {
           {web3Sections.map((item, index) => (
             <div
               key={index}
-              className="bg-gray-50 p-6 rounded-3xl shadow-md hover:shadow-lg transition transform hover:scale-105 flex flex-col items-center text-center min-h-[420px]"
+              className="bg-gray-50 p-6 rounded-3xl shadow-md hover:shadow-lg transition transform hover:scale-105 flex flex-col items-center text-center min-h-105"
             >
               <img
                 src={item.img}

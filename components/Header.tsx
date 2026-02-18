@@ -62,7 +62,7 @@ export default function Header() {
             >
               Hire Talent
             </Link>
-            <Link href="#">Log In</Link>
+            <Link href="/login">Log In</Link>
           </div>
 
           {/* Hamburger & Mobile Button */}
@@ -174,9 +174,10 @@ export default function Header() {
               >
                 Apply as Talent
               </Link>
-              <button className="flex-1 border border-slate-300 py-3 rounded-md font-medium text-black hover:bg-white transition">
+              <Link
+              href="/login" className="flex-1 border border-slate-300 py-3 rounded-md font-medium text-black hover:bg-white transition">
                 Log In
-              </button>
+              </Link>
             </div>
           </div>
         </div>

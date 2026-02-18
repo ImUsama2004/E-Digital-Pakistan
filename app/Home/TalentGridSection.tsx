@@ -3,76 +3,75 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Code,
-  Palette,
-  TrendingUp,
+  Code2,
+  Layers,
+  BarChart4,
   Briefcase,
-  Kanban,
-  Package,
-  Handshake,
-  Sparkles,
+  LayoutGrid,
+  Box,
+  Users2,
+  Zap,
   X,
+  ArrowUpRight,
 } from "lucide-react";
 
-// 1. Define the shape of an individual item
 interface TalentItem {
   title: string;
   body: string;
-  icon: React.ElementType; // This allows Lucide icons to be passed as components
+  icon: React.ElementType; 
   wide?: boolean;
 }
 
-// 2. Apply the TalentItem[] type to your constant array
 const ITEMS: TalentItem[] = [
   {
     title: "Developers",
-    body: "Seasoned software engineers, coders, and architects with expertise across hundreds of technologies.",
-    icon: Code,
+    body: "Seasoned software engineers and architects with expertise across hundreds of technologies.",
+    icon: Code2,
   },
   {
     title: "Designers",
-    body: "Expert UI, UX, Visual, and Interaction designers as well as a wide range of illustrators, animators, and more.",
-    icon: Palette,
+    body: "Expert UI, UX, and Visual designers specializing in high-conversion digital products.",
+    icon: Layers,
   },
   {
     title: "Marketing Experts",
-    body: "Experts in digital marketing, growth marketing, content creation, market research, brand strategy execution, and more.",
-    icon: TrendingUp,
+    body: "Specialists in growth marketing, brand strategy, and data-driven content execution.",
+    icon: BarChart4,
   },
   {
     title: "Management Consultants",
-    body: "Finance experts, business strategists, M&A consultants, financial modelers, and more.",
+    body: "Finance experts, business strategists, and financial modelers for complex operations.",
     icon: Briefcase,
   },
   {
     title: "Project Managers",
-    body: "Digital and technical project managers, scrum masters, and more with expertise in numerous PM tools.",
-    icon: Kanban,
+    body: "Technical project leads and scrum masters utilizing industry-standard PM methodologies.",
+    icon: LayoutGrid,
   },
   {
     title: "Product Managers",
-    body: "Digital product managers, scrum product owners with expertise in numerous industries.",
-    icon: Package,
+    body: "Digital product owners with deep expertise in lifecycle management and roadmap scaling.",
+    icon: Box,
   },
   {
     title: "Sales Experts",
-    body: "Lead generation experts, SDRs, sales reps, BDRs, customer success managers, and more.",
-    icon: Handshake,
+    body: "Strategic lead generation experts, SDRs, and customer success managers.",
+    icon: Users2,
   },
   {
     title: "Plus Thousands More Skills",
-    body: "Whatever skill or specialization your business requires, we have the top talent to meet your needs.",
-    icon: Sparkles,
+    body: "Whatever specialization your business requires, we provide the top 3% of global talent.",
+    icon: Zap,
     wide: true,
   },
 ];
 
 export default function TalentGridSection() {
-  // 3. Initialize state as either null OR a TalentItem
   const [activeItem, setActiveItem] = useState<TalentItem | null>(null);
 
   return (
     <>
+<<<<<<< HEAD
       {/* SECTION */}
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16">
@@ -85,23 +84,35 @@ export default function TalentGridSection() {
             <p className="mx-auto mt-3 max-w-2xl text-slate-600 sm:text-lg">
               We are the largest, globally distributed network of top business,
               design, and technology talent.
+=======
+      <section className="bg-white py-20 px-4 md:py-28">
+        <div className="mx-auto max-w-6xl">
+          {/* Header */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-light tracking-tight text-slate-900 sm:text-5xl">
+              Leverage <span className="font-semibold italic">World-class</span> Talent
+            </h2>
+            <div className="mt-6 h-1 w-20 bg-slate-900" />
+            <p className="mt-8 max-w-2xl text-slate-500 text-lg leading-relaxed">
+              We provide access to a globally distributed network of elite business, design, and technology professionals.
+>>>>>>> 19cc0d3670adb039c6c318f0bf5938e48aee429c
             </p>
           </div>
 
           {/* Grid */}
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-slate-100">
             {ITEMS.map((item) => {
               const Icon = item.icon;
 
               return (
                 <motion.article
                   key={item.title}
-                  whileHover={{ y: -6 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                  className={`border border-slate-200 bg-white p-6 shadow-sm ${
-                    item.wide ? "sm:col-span-2 lg:col-span-2" : ""
+                  onClick={() => setActiveItem(item)}
+                  className={`relative group border-r border-b border-slate-100 p-8 cursor-pointer transition-colors duration-500 hover:bg-slate-50/50 ${
+                    item.wide ? "lg:col-span-2" : ""
                   }`}
                 >
+<<<<<<< HEAD
                   <div className="flex items-start gap-4">
                     {/* Icon */}
                     <div className="mt-1 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-emerald-500 ring-1 ring-blue-100">
@@ -109,20 +120,28 @@ export default function TalentGridSection() {
                     </div>
 
                     {/* Content */}
+=======
+                  <div className="flex flex-col h-full justify-between">
+>>>>>>> 19cc0d3670adb039c6c318f0bf5938e48aee429c
                     <div>
-                      <h3 className="text-base font-bold text-slate-900">
+                      {/* Professional Icon Style: Thin, Slate-colored, No heavy background */}
+                      <div className="mb-8 text-slate-400 group-hover:text-slate-900 transition-colors duration-500">
+                        <Icon size={32} strokeWidth={1} />
+                      </div>
+
+                      <h3 className="text-lg font-semibold text-slate-900 mb-3 group-hover:translate-x-1 transition-transform">
                         {item.title}
                       </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                      <p className="text-sm leading-relaxed text-slate-400 group-hover:text-slate-600 transition-colors">
                         {item.body}
                       </p>
+                    </div>
 
-                      <button
-                        onClick={() => setActiveItem(item)}
-                        className="mt-4 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-blue-200"
-                      >
-                        Explore
-                      </button>
+                    <div className="mt-10 flex items-center justify-between">
+                      <span className="text-[10px] font-bold tracking-widest text-slate-300 uppercase group-hover:text-slate-900 transition-colors">
+                        View Profile
+                      </span>
+                      <ArrowUpRight size={14} className="text-slate-300 group-hover:text-slate-900 group-hover:rotate-45 transition-all" />
                     </div>
                   </div>
                 </motion.article>
@@ -132,57 +151,32 @@ export default function TalentGridSection() {
         </div>
       </section>
 
-      {/* MODAL / DRAWER */}
+      {/* MODAL */}
       <AnimatePresence>
         {activeItem && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/40 px-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setActiveItem(null)}
-          >
+          <div className="fixed inset-0 z-100 flex items-center justify-center p-4 backdrop-blur-sm bg-slate-900/20">
             <motion.div
-              onClick={(e) => e.stopPropagation()}
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 100, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="w-full max-w-md rounded-t-2xl sm:rounded-2xl bg-white p-6 shadow-xl"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="relative w-full max-w-2xl bg-white p-12 shadow-2xl rounded-sm"
             >
-              {/* Header */}
-              <div className="flex items-start justify-between">
-                <h3 className="text-lg font-bold text-slate-900">
-                  {activeItem.title}
-                </h3>
-                <button
-                  onClick={() => setActiveItem(null)}
-                  className="text-slate-400 hover:text-slate-600"
-                >
-                  <X size={18} />
-                </button>
-              </div>
+              <button onClick={() => setActiveItem(null)} className="absolute right-8 top-8 text-slate-400 hover:text-slate-900 transition-colors">
+                <X size={24} strokeWidth={1} />
+              </button>
 
-              {/* Body */}
-              <p className="mt-3 text-sm text-slate-600">{activeItem.body}</p>
-
-              {/* Actions */}
-              <div className="mt-6 flex justify-end gap-3">
-                <button
-                  onClick={() => setActiveItem(null)}
-                  className="rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50"
-                >
-                  Close
-                </button>
-                <button
-                  onClick={() => setActiveItem(null)}
-                  className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
-                >
-                  Continue
-                </button>
+              <div className="mb-8 text-slate-900">
+                <activeItem.icon size={48} strokeWidth={1} />
               </div>
+              
+              <h3 className="text-3xl font-bold text-slate-900 mb-4">{activeItem.title}</h3>
+              <p className="text-slate-500 text-lg leading-relaxed mb-8">{activeItem.body}</p>
+              
+              <button className="w-full md:w-auto bg-slate-900 text-white px-10 py-4 font-bold text-sm tracking-widest uppercase hover:bg-slate-800 transition-all">
+                Hire Top Talent
+              </button>
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
