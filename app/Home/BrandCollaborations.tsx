@@ -53,7 +53,7 @@ export default function BrandCollaborations() {
       <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 text-center md:text-left px-4">
         <p className="text-gray-600 text-lg md:text-xl font-medium">Ready to get started?</p>
         <button className="w-full md:w-auto bg-[#00d37f] hover:bg-[#00bc71] text-white px-10 py-3.5 rounded-md font-bold transition-all duration-300 cursor-pointer shadow-sm active:scale-95">
-        Hire Top Talent</button>
+        Hire Talent</button>
       </div>
       </div>
     </section>
