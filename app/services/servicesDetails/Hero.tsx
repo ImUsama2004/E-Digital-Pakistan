@@ -1,10 +1,15 @@
-"use client"; // Required for Framer Motion in Next.js App Router
+"use client";
 
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Hero = () => {
-  // Animation variants for cleaner code
+// --- Added Props Interface ---
+interface HeroProps {
+  id: string;
+}
+
+const Hero: React.FC<HeroProps> = ({ id }) => {
+  // Animation variants
   const fadeInUp = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -38,14 +43,14 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="text-gray-400 text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
         >
+          {/* You can now use the 'id' here if you want to customize the text per service */}
           In today's world, an app speaks volumes. With a simple pressing of a button, 
           customers can access your entire business in the virtual arena and that's 
-          exactly where we come in. With cutting-edge app development, we make 
-          your shift as easy as a breeze.
+          exactly where we come in. Service Reference: {id}
         </motion.p>
       </div>
 
-      {/* Side Button - Sliding in from right */}
+      {/* Side Button */}
       <motion.div 
         initial={{ x: 100 }}
         animate={{ x: 0 }}
