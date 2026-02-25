@@ -10,32 +10,32 @@ const talentData = [
     name: "Cheryl Da Silva",
     role: "Marketing Strategist",
     previous: "Google",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
-    logo: "https://www.svgrepo.com/show/475656/google-color.svg"
+    image: "/",
+    logo: "/"
   },
   {
     id: 2,
     name: "Adrian Gonzalez",
     role: "AI Product Manager",
     previous: "Microsoft",
-    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
-    logo: "https://www.svgrepo.com/show/443313/microsoft.svg"
+    image: "/",
+    logo: "/"
   },
   {
     id: 3,
     name: "Jonah Elbaz",
     role: "React Developer",
     previous: "Meta",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800",
-    logo: "https://www.svgrepo.com/show/303139/facebook-messenger-logo.svg"
+    image: "/",
+    logo: "/"
   },
   {
     id: 4,
     name: "Sarah Jenkins",
     role: "UX Designer",
     previous: "Apple",
-    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800",
-    logo: "https://www.svgrepo.com/show/303108/apple-black-logo.svg"
+    image: "/",
+    logo: "/"
   }
 ];
 
