@@ -10,7 +10,7 @@ export default function ServiceDetails() {
   return (
     <main>
       <Hero id={serviceId} /> 
-      <FullProcessPath id={serviceId} />
+      <FullProcessPath />
     </main>
   );
 }

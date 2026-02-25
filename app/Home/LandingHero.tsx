@@ -116,7 +116,7 @@ export default function ToptalHero() {
                   </button>
                 </div>
               </div>
-
+            {/* card */}
               <div className="relative h-150 flex items-end">
                 <AnimatePresence mode="wait">
                   <motion.div
