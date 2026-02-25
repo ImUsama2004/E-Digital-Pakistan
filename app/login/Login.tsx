@@ -1,12 +1,12 @@
-"use client"; // Required if you add interactivity like onClick or useState
+"use client";
 
-import React, { FormEvent } from 'react';
-import { Eye, Zap } from 'lucide-react';
+import React, { FormEvent, useState } from 'react';
+import { Eye, EyeOff, Zap } from 'lucide-react';
 
-// Use React.FC (Functional Component) or simple function definition
 const SignIn: React.FC = () => {
+  // 1. State to track password visibility
+  const [showPassword, setShowPassword] = useState(false);
   
-  // Example of a typed handler
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("Form submitted");
@@ -18,7 +18,6 @@ const SignIn: React.FC = () => {
         
         {/* Logo & Header */}
         <div className="flex flex-col items-center">
-          {/* Custom Zap icon color to match image exactly */}
           <Zap className="h-10 w-10 text-[#00f28f] fill-[#00f28f]" />
           <h1 className="mt-6 text-4xl font-bold tracking-tight">Sign In</h1>
           <p className="mt-2 text-gray-400">Access your account</p>
@@ -26,7 +25,7 @@ const SignIn: React.FC = () => {
 
         <form onSubmit={handleSubmit} className="mt-8 space-y-4">
           
-          {/* Email Input with Gradient Border Overlay */}
+          {/* Email Input */}
           <div className="relative rounded-lg p-[1.5px] bg-linear-to-r from-[#00f28f] via-[#00d4ff] to-[#0081ff]">
             <div className="bg-[#0f1117] rounded-lg px-4 py-3">
               <label className="absolute -top-2.5 left-4 bg-[#0f1117] px-1 text-xs font-medium text-[#00f28f]">
@@ -44,12 +43,24 @@ const SignIn: React.FC = () => {
           {/* Password Input */}
           <div className="relative flex items-center rounded-lg border border-gray-800 bg-[#161922] px-4 py-4 transition-all focus-within:border-gray-600">
             <input 
-              type="password" 
+              // 2. Dynamic type based on state
+              type={showPassword ? "text" : "password"} 
               placeholder="Password" 
               required
               className="w-full bg-transparent text-gray-300 outline-none placeholder:text-gray-500"
             />
-            <Eye className="h-5 w-5 text-gray-500 cursor-pointer hover:text-gray-300 transition-colors" />
+            {/* 3. Toggle Button */}
+            <button
+              type="button" // Important: prevents form submission
+              onClick={() => setShowPassword(!showPassword)}
+              className="focus:outline-none"
+            >
+              {showPassword ? (
+                <EyeOff className="h-5 w-5 text-[#00f28f] cursor-pointer transition-colors" />
+              ) : (
+                <Eye className="h-5 w-5 text-gray-500 cursor-pointer hover:text-gray-300 transition-colors" />
+              )}
+            </button>
           </div>
 
           {/* Options */}

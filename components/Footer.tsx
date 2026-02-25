@@ -5,7 +5,7 @@ import { Linkedin, Twitter, Facebook, Instagram } from 'lucide-react';
 export default function Footer() {
   return (
     // Changed bg to your greenish color and text to a dark slate for readability
-    <footer className="bg-green-900 text-black py-16 px-4 font-sans">
+    <footer className="bg-[#03c48a] text-black py-16 px-4 font-sans">
       <div className="max-w-7xl mx-auto">
         
         {/* Main Links Grid */}
@@ -67,8 +67,8 @@ export default function Footer() {
             {/* Logo & Tagline */}
             <div className="flex items-center gap-4">
               <div className="text-2xl flex items-center gap-2">
-                <span className="text-white bg-green-500 px-5 py-1 rounded-3xl">E-Digital Pakistan</span>
-                <span className="w-1.5 h-1.5 bg-blue-400 rounded-full"></span>
+                <span className="text-white bg-[#2aecb2] px-5 py-1 rounded-3xl">E-Digital Pakistan</span>
+                <span className="w-1.5 h-1.5 bg-[#0083c0] rounded-full"></span>
               </div>
               <span className="text-white/85 text-xs italic hidden sm:block font-medium">
                 The World's Top Talent, On Demand®
@@ -81,7 +81,7 @@ export default function Footer() {
                 <a 
                   key={i} 
                   href="#" 
-                  className="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center hover:bg-[#0a1b5c]/80 transition-all text-white"
+                  className="w-10 h-10 rounded-full bg-[#2aecb2] flex items-center justify-center hover:bg-[#0a1b5c]/80 transition-all text-white"
                 >
                   <Icon size={18} />
                 </a>

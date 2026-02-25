@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { div } from 'framer-motion/client';
+// import { div } from 'framer-motion/client';
 import Link from 'next/link';
 interface ServiceItem {
   id: number;
@@ -61,7 +61,7 @@ const ServicesGrid: React.FC = () => {
             <h1 className="text-[42px] md:text-[56px] font-bold leading-[1.1] text-black tracking-tight mb-8">
               A Digital Presence That Will Break All Boundaries!
             </h1>
-            <p className="text-[#555555] text-[17px] leading-[1.6]">
+            <p className="text-[#555555]  text-[17px] leading-[1.6]">
               Fast solutions, efficient workflows, and ideas that will take your company to the next level.
             </p>
           </header>
@@ -92,7 +92,7 @@ const ServiceCard = ({ service }: { service: ServiceItem }) => (
       viewport={{ once: true }}
       className="group bg-white border border-[#eeeeee] rounded-lg overflow-hidden transition-all duration-300 hover:shadow-xl cursor-pointer"
     >
-      <div className="relative h-[300px] w-full overflow-hidden">
+      <div className="relative h-75 w-full overflow-hidden">
         <img 
           src={service.image} 
           alt={service.title} 
@@ -100,17 +100,17 @@ const ServiceCard = ({ service }: { service: ServiceItem }) => (
         />
       </div>
 
-      <div className="p-10 h-80 flex flex-col justify-between">
+      <div className=" bg-[#2aecb2] group-hover:bg-white p-10 h-80 flex flex-col justify-between">
         <div>
-          <h3 className="text-[24px] font-bold text-black mb-4 group-hover:text-[#1a8fff] transition-colors">
+          <h3 className="text-[24px] font-bold text-white mb-4 group-hover:text-[#2aecb2] transition-colors">
             {service.title}
           </h3>
-          <p className="text-[#666666] text-[16px] leading-[1.6]">
+          <p className="text-[#5f5f5f] group-hover:text-[#ccc5c5] text-[16px] leading-[1.6]">
             {service.description}
           </p>
         </div>
         
-        <div className="w-12 h-12 flex items-center justify-center rounded-full border border-[#dddddd] group-hover:bg-black group-hover:text-white transition-all duration-300">
+        <div className="w-12 h-12 flex items-center justify-center bg-white text-[#2aecb2] rounded-full border border-[#dddddd] group-hover:bg-[#2aecb2] group-hover:text-white transition-all duration-300">
           <ArrowRight size={20} />
         </div>
       </div>

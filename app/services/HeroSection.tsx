@@ -16,7 +16,7 @@ const HeroSection: React.FC = () => {
   }, [words.length]);
 
   return (
-    // min-h-[75vh] provides a strong presence without forcing a full-page scroll
+   
     <section className="flex flex-col items-center justify-center min-h-[75vh] py-10 bg-white px-5 text-center">
       
       {/* Video/Play Icon - Slightly larger scale */}
@@ -26,7 +26,7 @@ const HeroSection: React.FC = () => {
         transition={{ duration: 0.6 }}
         className="mb-10 cursor-pointer group"
       >
-        <div className="flex items-center justify-center w-16 h-16 rounded-full border-2 border-cyan-400 text-cyan-500 transition-all duration-300 group-hover:bg-cyan-500 group-hover:text-white group-hover:shadow-xl group-hover:shadow-cyan-100">
+        <div className="flex items-center justify-center w-16 h-16 rounded-full border-2 border-[#2aecb2] text-[#2aecb2] transition-all duration-300 group-hover:bg-[#2aecb2] group-hover:border-[#e2f8f1] group-hover:text-white group-hover:shadow-xl group-hover:shadow-cyan-100">
           <Play fill="currentColor" size={24} className="ml-1" />
         </div>
       </motion.div>
@@ -36,7 +36,7 @@ const HeroSection: React.FC = () => {
         We Create Solutions <br />
         That Are <br />
         
-        <span className="relative inline-block text-cyan-500 min-h-[1.2em] min-w-70">
+        <span className="relative inline-block text-[#2aecb2] min-h-[1.2em] min-w-70">
           <AnimatePresence mode="wait">
             <motion.span
               key={words[index]}
@@ -69,9 +69,9 @@ const HeroSection: React.FC = () => {
       {/* CTA Buttons */}
       <div className="flex flex-col sm:flex-row gap-5 mt-12">
         {/* Quote Button */}
-        <button className="group flex items-center justify-between gap-6 pl-8 pr-2 py-2 rounded-full border-2 border-cyan-400 text-cyan-600 font-bold hover:bg-cyan-50 transition-all">
+        <button className="group flex items-center justify-between gap-6 pl-8 pr-2 py-2 rounded-full border-2 border-[#2aecb2] text-[#2aecb2] font-bold hover:bg-cyan-50 transition-all">
           GET A QUOTE
-          <div className="bg-cyan-500 rounded-full p-3 text-white transition-transform group-hover:rotate-45">
+          <div className="bg-[#2aecb2] rounded-full p-3 text-white transition-transform group-hover:rotate-45">
             <ArrowRight size={20} />
           </div>
         </button>

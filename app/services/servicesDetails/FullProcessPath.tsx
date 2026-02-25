@@ -2,11 +2,17 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useParams } from 'next/navigation';
 
-// --- Added Props Interface ---
-interface ProcessProps {
-  id: string;
-}
+// --- Shared Data (Keep this updated with your main list) ---
+const serviceTitles: Record<string, string> = {
+  "1": "Web Application Development",
+  "2": "Mobile Application Development",
+  "3": "Creatives",
+  "4": "Digital Marketing",
+  "5": "Search Engine Optimization",
+  "6": "CMS Development",
+};
 
 interface ProcessStep {
   id: string;
@@ -28,10 +34,14 @@ const steps: ProcessStep[] = [
   { id: 'qa', number: '08', title: 'Quality Assurance', description: "Rigorous testing ensures a bug-free, high-performance experience that meets industry standards.", iconType: 'qa' }
 ];
 
-const FullProcessPath: React.FC<ProcessProps> = ({ id }) => {
+const FullProcessPath = () => {
+  const params = useParams();
+  const id = params.id as string;
+  const serviceName = serviceTitles[id] || "Our Process";
+
   return (
     <section className="bg-white py-20 overflow-hidden">
-      {/* Header with Hexagon Pattern */}
+      {/* Header with your Hexagon Pattern recovered */}
       <div className="relative bg-[#111111] py-24 px-6 text-center mb-10 overflow-hidden">
         <div 
           className="absolute inset-0 opacity-10"
@@ -41,27 +51,29 @@ const FullProcessPath: React.FC<ProcessProps> = ({ id }) => {
           }}
         />
         <div className="relative z-10">
-          <p className="text-gray-400 uppercase tracking-[0.3em] text-xs font-bold mb-4">The Journey of Creation</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">Designing The Future</h2>
+          <p className="text-gray-400 uppercase tracking-[0.3em] text-xs font-bold mb-4">Service Flow</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">{serviceName}</h2>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6">
         {steps.map((step, index) => {
+          // recovered the zig-zag layout logic correctly
           const isEven = index % 2 !== 0; 
           
           return (
             <React.Fragment key={step.id}>
-              <div className={`grid md:grid-cols-2 gap-16 items-center py-20 ${isEven ? 'md:flex-row-reverse' : ''}`}>
+              <div className={`flex flex-col md:flex-row gap-16 items-center py-20 ${isEven ? 'md:flex-row-reverse' : ''}`}>
                 
+                {/* Content Side */}
                 <motion.div 
                   initial={{ opacity: 0, x: isEven ? 100 : -100 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="relative z-10"
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                  className="relative z-10 w-full md:w-1/2"
                 >
-                  <span className="absolute -left-10 -top-20 text-[10rem] md:text-[14rem] font-black text-gray-50 -z-10 select-none pointer-events-none">
+                  <span className="absolute -left-10 -top-20 text-[10rem] md:text-[14rem] font-black text-gray-50 -z-10 select-none">
                     {step.number}
                   </span>
                   
@@ -77,22 +89,24 @@ const FullProcessPath: React.FC<ProcessProps> = ({ id }) => {
                   {step.highlightText && (
                     <p className="text-gray-800 text-lg font-bold mb-4">{step.highlightText}</p>
                   )}
-                  <p className="text-gray-500 text-lg leading-relaxed max-w-md">{step.description}</p>
+                  <p className="text-gray-500 text-lg leading-relaxed">{step.description}</p>
                 </motion.div>
 
+                {/* Icon Side */}
                 <motion.div 
                   initial={{ opacity: 0, x: isEven ? -100 : 100 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  className="flex justify-center"
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                  className="w-full md:w-1/2 flex justify-center"
                 >
                   <IconSelector type={step.iconType} />
                 </motion.div>
               </div>
 
+              {/* Recovered the Zig-Zag SVG path connectors */}
               {index !== steps.length - 1 && (
-                <div className="flex justify-center h-32 w-full">
+                <div className="hidden md:flex justify-center h-32 w-full">
                   <svg width="400" height="150" viewBox="0 0 400 150" fill="none" className="opacity-20">
                     <path 
                       d={isEven ? "M350 0C350 80 50 70 50 150" : "M50 0C50 80 350 70 350 150"} 
@@ -111,11 +125,11 @@ const FullProcessPath: React.FC<ProcessProps> = ({ id }) => {
   );
 };
 
-// --- Custom SVG Icons Selector ---
+// --- Recovered Your Exact SVG Icons ---
 const IconSelector = ({ type }: { type: string }) => {
   const commonSize = "w-64 h-64 md:w-80 md:h-80";
   switch (type) {
-    case 'list': return (<div className="flex flex-col gap-6 w-full max-w-[280px]">{[ '#22d3ee', '#10b981', '#f59e0b', '#f43f5e' ].map((c, i) => (<div key={i} className="flex items-center gap-4"><svg className="w-10 h-10" style={{color: c}} fill="none" stroke="currentColor" strokeWidth="4" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg><div className="h-4 w-full bg-blue-50/60 rounded-full" /></div>))}</div>);
+    case 'list': return (<div className="flex flex-col gap-6 w-full max-w-xs">{[ '#22d3ee', '#10b981', '#f59e0b', '#f43f5e' ].map((c, i) => (<div key={i} className="flex items-center gap-4"><svg className="w-10 h-10" style={{color: c}} fill="none" stroke="currentColor" strokeWidth="4" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg><div className="h-4 w-full bg-blue-50/60 rounded-full" /></div>))}</div>);
     case 'lightbulb': return (<svg className={commonSize} viewBox="0 0 200 200" fill="none"><circle cx="100" cy="100" r="50" fill="#CBD5E1" fillOpacity="0.4"/><path d="M85 155h30v15a10 10 0 01-10 10H95a10 10 0 01-10-10v-15z" fill="#94A3B8" /><path d="M100 20v20" stroke="#FBBF24" strokeWidth="10" strokeLinecap="round"/><path d="M30 60l20 15" stroke="#10B981" strokeWidth="10" strokeLinecap="round"/><path d="M170 60l-20 15" stroke="#0EA5E9" strokeWidth="10" strokeLinecap="round"/><path d="M20 115h25" stroke="#EF4444" strokeWidth="10" strokeLinecap="round"/><path d="M180 115h-25" stroke="#3B82F6" strokeWidth="10" strokeLinecap="round"/></svg>);
     case 'brain': return (<svg className={commonSize} viewBox="0 0 200 200" fill="none"><path d="M100 50c-30 0-45 20-45 40 0 15 10 25 15 35s5 25 5 25h50s0-15 5-25 15-20 15-35c0-20-15-40-45-40z" fill="#E2E8F0" /><circle cx="85" cy="85" r="10" fill="#F43F5E" /><circle cx="115" cy="85" r="10" fill="#3B82F6" /><circle cx="100" cy="110" r="10" fill="#10B981" /></svg>);
     case 'scope': return (<svg className={commonSize} viewBox="0 0 200 200" fill="none"><rect x="60" y="40" width="80" height="110" rx="8" fill="#F1F5F9" stroke="#94A3B8" strokeWidth="4"/><path d="M80 70h40M80 95h40M80 120h25" stroke="#3B82F6" strokeWidth="6" strokeLinecap="round"/></svg>);
