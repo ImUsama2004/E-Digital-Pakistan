@@ -69,7 +69,7 @@ export default function ToptalHero() {
     const interval = setInterval(handleNext, 3000);
     return () => clearInterval(interval);
   }, [activeIndex, view]);
-
+// 
   return (
     <section className="relative min-h-230 bg-[#e7eaf2] flex flex-col items-center pt-8 overflow-hidden font-sans">
       
