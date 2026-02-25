@@ -10,32 +10,32 @@ const talentData = [
     name: "Cheryl Da Silva",
     role: "Marketing Strategist",
     previous: "Google",
-    image: "/",
-    logo: "/"
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800",
+    logo: "https://www.svgrepo.com/show/475656/google-color.svg"
   },
   {
     id: 2,
     name: "Adrian Gonzalez",
     role: "AI Product Manager",
     previous: "Microsoft",
-    image: "/",
-    logo: "/"
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
+    logo: "https://www.svgrepo.com/show/443313/microsoft.svg"
   },
   {
     id: 3,
     name: "Jonah Elbaz",
     role: "React Developer",
     previous: "Meta",
-    image: "/",
-    logo: "/"
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800",
+    logo: "https://www.svgrepo.com/show/303139/facebook-messenger-logo.svg"
   },
   {
     id: 4,
     name: "Sarah Jenkins",
     role: "UX Designer",
     previous: "Apple",
-    image: "/",
-    logo: "/"
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800",
+    logo: "https://www.svgrepo.com/show/303108/apple-black-logo.svg"
   }
 ];
 
@@ -71,11 +71,11 @@ export default function ToptalHero() {
   }, [activeIndex, view]);
 
   return (
-    <section className="relative min-h-[920px] bg-[#e7eaf2] flex flex-col items-center pt-8 overflow-hidden font-sans">
+    <section className="relative min-h-230 bg-[#e7eaf2] flex flex-col items-center pt-8 overflow-hidden font-sans">
       
       {/* 1. Pill Toggle Navigation */}
       <div className="flex items-center gap-4 bg-[#d9dde7] rounded-full p-1.5 border border-white/30 shadow-sm z-20">
-        <span className="text-gray-500 text-[13px] font-semibold ml-4">I&apos;m looking for</span>
+        <span className="text-gray-500 text-[13px] font-semibold ml-4">I'm looking for</span>
         <div className="flex bg-white/40 rounded-full p-1">
           <button 
             onClick={() => setView('talent')}
@@ -94,6 +94,7 @@ export default function ToptalHero() {
 
       <AnimatePresence mode="wait">
         {view === 'talent' ? (
+          /* TALENT VIEW */
           <motion.div 
             key="talent-view"
             initial={{ opacity: 0, x: -20 }}
@@ -101,12 +102,12 @@ export default function ToptalHero() {
             exit={{ opacity: 0, x: 20 }}
             className="relative w-full flex flex-col items-center"
           >
-            <div className="relative w-full max-w-[1300px] px-8 grid lg:grid-cols-[1.1fr_1fr] mt-24">
+            <div className="relative w-full max-w-325 px-8 grid lg:grid-cols-[1.1fr_1fr] mt-24">
               <div className="flex flex-col z-20">
                 <h1 className="text-[68px] font-bold text-[#1a1c21] leading-[1.1] tracking-tight">
-                  Hire the <span className="underline decoration-[#c1c7d6] underline-offset-8 decoration-2">Top 3%</span> of the World’s Talent™
+                  Hire the <span className="underline decoration-[#c1c7d6] underline-offset-16 decoration-2">Top 3%</span> of the World’s Talent™
                 </h1>
-                <p className="mt-12 text-[19px] text-[#53575e] max-w-[510px] leading-[1.65]">
+                <p className="mt-12 text-[19px] text-[#53575e] max-w-127.5 leading-[1.65]">
                   Toptal is an exclusive network of the top software developers, designers, marketing experts, management consultants, product managers, and project managers in the world.
                 </p>
                 <div className="mt-14">
@@ -116,27 +117,27 @@ export default function ToptalHero() {
                 </div>
               </div>
 
-              <div className="relative h-[600px] flex items-end">
+              <div className="relative h-150 flex items-end">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={current.id}
                     initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
                     transition={{ duration: 0.6 }}
-                    className="absolute w-[600px] h-[750px] z-10"
+                    className="absolute w-150 h-187.5 z-10"
                   >
                     <img 
                       src={current.image} 
-                      className="w-[260px] h-[385px] object-cover object-bottom select-none absolute bottom-[156px]" 
+                      className="w-65 h-96.25 object-cover object-bottom select-none absolute bottom-39" 
                       alt={current.name}
                     />
-                    <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-[#e7eaf2] via-[#e7eaf2]/30 to-transparent z-20" />
+                    <div className="absolute inset-x-0 bottom-0 h-64 bg-linear-to-t from-[#e7eaf2] via-[#e7eaf2]/30 to-transparent z-20" />
                   </motion.div>
                 </AnimatePresence>
 
                 <motion.div 
                   key={`floating-${current.id}`}
                   initial={{ x: 30, opacity: 0 }} animate={{ x: 0, opacity: 1 }}
-                  className="absolute top-[9.6%] right-[1%] bg-white p-3 shadow-2xl border border-white/50 w-[300px] z-30"
+                  className="absolute top-[9.6%] right-[1%] bg-white p-3 shadow-2xl border border-white/50 w-75 z-30"
                 >
                   <div className="relative w-full h-24 mb-6 opacity-30 grayscale"><Globe className="w-full h-full text-blue-900" /></div>
                   <div className="relative">
@@ -158,11 +159,11 @@ export default function ToptalHero() {
             </div>
 
             {/* Carousel Section */}
-            <div className="relative w-full max-w-[1300px] px-10 -mt-10 pb-20 z-40">
+            <div className="relative w-full max-w-325 px-10 -mt-10 pb-20 z-40">
               <div ref={scrollContainerRef} className="flex items-center gap-4 overflow-x-hidden scroll-smooth">
                 {talentData.map((talent, idx) => (
                   <div key={talent.id} onClick={() => {setActiveIndex(idx); scrollToIndex(idx);}}
-                    className={`shrink-0 w-[360px] bg-white rounded-xl flex items-stretch h-[140px] cursor-pointer transition-all duration-300 border-[3px] ${activeIndex === idx ? 'border-[#204ecf] shadow-2xl' : 'border-transparent opacity-60'}`}
+                    className={`shrink-0 w-90 bg-white rounded-xl flex items-stretch h-35 cursor-pointer transition-all duration-300 border-[3px] ${activeIndex === idx ? 'border-[#204ecf] shadow-2xl' : 'border-transparent opacity-60'}`}
                   >
                     <div className="w-32 bg-[#f0f2f8]"><img src={talent.image} className="w-full h-full object-cover object-top" alt={talent.name} /></div>
                     <div className="flex-1 p-5 flex flex-col justify-center">
@@ -179,19 +180,19 @@ export default function ToptalHero() {
             </div>
           </motion.div>
         ) : (
-          /* SERVICES VIEW */
+          /* SERVICES VIEW (From Image) */
           <motion.div 
             key="services-view"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
-            className="relative w-full max-w-[1300px] px-8 grid lg:grid-cols-[1fr_1.1fr] mt-24 items-center gap-12"
+            className="relative w-full max-w-325 px-8 grid lg:grid-cols-[1fr_1.1fr] mt-24 items-center gap-12"
           >
             <div className="flex flex-col">
               <h1 className="text-[56px] font-bold text-[#1a1c21] leading-[1.1] tracking-tight">
                 High-impact Solutions Powered by World-class Talent and Agile Teams
               </h1>
-              <p className="mt-8 text-[19px] text-[#53575e] max-w-[480px] leading-[1.6]">
+              <p className="mt-8 text-[19px] text-[#53575e] max-w-120 leading-[1.6]">
                 Toptal solves complex business challenges with outcome-oriented services and solutions tailored to your needs. From technology to marketing to management consulting, we offer everything you need to achieve your goals.
               </p>
               <div className="mt-10">
@@ -202,6 +203,7 @@ export default function ToptalHero() {
             </div>
 
             <div className="flex flex-col gap-4">
+               {/* Video Card Placeholder */}
                <div className="relative aspect-video rounded-xl overflow-hidden shadow-2xl group cursor-pointer">
                   <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1200" className="w-full h-full object-cover" alt="office" />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all flex items-center justify-center">
@@ -212,6 +214,7 @@ export default function ToptalHero() {
                     <p className="text-[#1a1c21] font-bold text-xl">Bridgestone reinvents tire management with scalable, data-driven monitoring software.</p>
                   </div>
                </div>
+               {/* Logos Grid */}
                <div className="grid grid-cols-4 gap-0.5 bg-gray-200 rounded-lg overflow-hidden border border-gray-200">
                   {['BRIDGESTONE', 'CAVALIERS', 'zoetis', 'USC', 'CSR', 'Precision', 'KAMYLON', 'Big Sur AI'].map((logo) => (
                     <div key={logo} className="bg-white p-4 h-20 flex items-center justify-center text-[10px] font-black text-gray-300 grayscale opacity-70 hover:opacity-100 transition-all cursor-pointer">
