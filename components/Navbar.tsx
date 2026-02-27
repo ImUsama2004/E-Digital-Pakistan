@@ -24,7 +24,7 @@ export default function Navbar() {
   const navLinks = [
     { name: "Consulting & Services", href: "/services", icon: Briefcase },
     { name: "Blog", href: "#", icon: PenTool },
-    { name: "About Us", href: "#", icon: Users },
+    { name: "About Us", href: "/about-us", icon: Users },
   ];
 
   const mobileMenuItems = [
