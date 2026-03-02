@@ -301,7 +301,7 @@ export default function AboutPage() {
                 >
                   <ChevronLeft size={24} />
                 </button>
-                <div className="w-[1px] bg-gray-300 mx-2 my-2" />
+                <div className="w-1px bg-gray-300 mx-2 my-2" />
                 <button 
                   onClick={nextMember} 
                   className="p-3 hover:bg-white hover:shadow-md rounded-full transition-all text-gray-600 hover:text-blue-600 active:scale-95"
