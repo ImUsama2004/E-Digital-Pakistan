@@ -148,6 +148,7 @@ export default function Navbar() {
                   <Link href="/login" onClick={() => setOpen(false)} className="py-3 border-2 border-slate-300 rounded-xl font-semibold text-center hover:border-[#2aecb2] transition-all">
                     Log In
                   </Link>
+                  
                 </div>
               </div>
             </motion.div>

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, CheckCircle2, Box, Globe, PlayCircle } from 'lucide-react';
+import { greenCol } from '@/components/color';
 
 const talentData = [
   {
@@ -19,7 +20,7 @@ const talentData = [
     role: "AI Product Manager",
     previous: "Microsoft",
     image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800",
-    logo: "https://www.svgrepo.com/show/443313/microsoft.svg"
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/25/Microsoft_icon.svg"
   },
   {
     id: 3,
@@ -27,7 +28,7 @@ const talentData = [
     role: "React Developer",
     previous: "Meta",
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800",
-    logo: "https://www.svgrepo.com/show/303139/facebook-messenger-logo.svg"
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmgqQX-NWBxs6V0Nej0CJAExi0psJbACvU6g&s"
   },
   {
     id: 4,
@@ -35,7 +36,7 @@ const talentData = [
     role: "UX Designer",
     previous: "Apple",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=800",
-    logo: "https://www.svgrepo.com/show/303108/apple-black-logo.svg"
+    logo: "https://cdn.iconscout.com/icon/free/png-256/free-apple-logo-icon-svg-download-png-458226.png?f=webp"
   }
 ];
 
@@ -79,15 +80,15 @@ export default function ToptalHero() {
         <div className="flex bg-white/40 rounded-full p-1">
           <button 
             onClick={() => setView('talent')}
-            className={`px-7 py-2 rounded-full font-bold text-[14px] transition-all ${view === 'talent' ? 'bg-white text-[#204ecf] shadow-md' : 'text-gray-600'} cursor-pointer`}
+            className={`px-7 py-2 rounded-full font-bold text-[14px] transition-all ${view === 'talent' ? `bg-white text-[#2aecb2]  shadow-md` : 'text-gray-600'} cursor-pointer`}
           >
             Talent
           </button>
           <button 
             onClick={() => setView('services')}
-            className={`cursor-pointer px-7 py-2 rounded-full font-bold text-[14px] flex items-center gap-2 transition-all ${view === 'services' ? 'bg-white text-[#204ecf] shadow-md' : 'text-gray-600'}`}
+            className={`cursor-pointer px-7 py-2 rounded-full font-bold text-[14px] flex items-center gap-2 transition-all ${view === 'services' ? 'bg-white text-[#2aecb2] shadow-md' : 'text-gray-600'}`}
           >
-            Consulting & <span className="bg-[#204ecf] text-white px-1.5 py-0.5 rounded-sm text-[10px] uppercase tracking-tighter">Services</span>
+            Consulting & <span className="bg-[#2aecb2] text-white px-1.5 py-0.5 rounded-sm text-[10px] uppercase tracking-tighter">Services</span>
           </button>
         </div>
       </div>
@@ -111,7 +112,7 @@ export default function ToptalHero() {
                   Toptal is an exclusive network of the top software developers, designers, marketing experts, management consultants, product managers, and project managers in the world.
                 </p>
                 <div className="mt-14">
-                  <button className="bg-[#00d68f] hover:bg-[#00c080] text-white px-12 py-5 rounded-md text-[18px] font-bold transition-all shadow-lg">
+                  <button className="bg-[#2aecb2] hover:bg-[#00c080] text-white px-12 py-5 rounded-md text-[18px] font-bold transition-all shadow-lg">
                     Hire Top Talent
                   </button>
                 </div>
@@ -163,7 +164,7 @@ export default function ToptalHero() {
               <div ref={scrollContainerRef} className="flex items-center gap-4 overflow-x-hidden scroll-smooth">
                 {talentData.map((talent, idx) => (
                   <div key={talent.id} onClick={() => {setActiveIndex(idx); scrollToIndex(idx);}}
-                    className={`shrink-0 w-90 bg-white rounded-xl flex items-stretch h-35 cursor-pointer transition-all duration-300 border-[3px] ${activeIndex === idx ? 'border-[#204ecf] shadow-2xl' : 'border-transparent opacity-60'}`}
+                    className={`shrink-0 w-90 bg-white rounded-xl flex items-stretch h-35 cursor-pointer transition-all duration-300 border-[3px] ${activeIndex === idx ? 'border-[#2aecb2] shadow-2xl' : 'border-transparent opacity-60'}`}
                   >
                     <div className="w-32 bg-[#f0f2f8]"><img src={talent.image} className="w-full h-full object-cover object-top" alt={talent.name} /></div>
                     <div className="flex-1 p-5 flex flex-col justify-center">
@@ -174,8 +175,8 @@ export default function ToptalHero() {
                 ))}
               </div>
               <div className="absolute top-1/3 -translate-y-1/2 -left-4 flex items-center justify-between w-[calc(100%+32px)] pointer-events-none">
-                <button onClick={handlePrev} className="w-12 h-12 bg-white rounded-full shadow-xl pointer-events-auto flex items-center justify-center text-gray-300 hover:text-blue-600 border border-gray-100"><ChevronLeft size={28} /></button>
-                <button onClick={handleNext} className="w-12 h-12 bg-white rounded-full shadow-xl pointer-events-auto flex items-center justify-center text-gray-300 hover:text-blue-600 border border-gray-100"><ChevronRight size={28} /></button>
+                <button onClick={handlePrev} className="w-12 h-12 bg-white rounded-full shadow-xl pointer-events-auto flex items-center justify-center text-gray-300 hover:text-[#2aecb2] border border-gray-100"><ChevronLeft size={28} /></button>
+                <button onClick={handleNext} className="w-12 h-12 bg-white rounded-full shadow-xl pointer-events-auto flex items-center justify-center text-gray-300 hover:text-[#2aecb2] border border-gray-100"><ChevronRight size={28} /></button>
               </div>
             </div>
           </motion.div>

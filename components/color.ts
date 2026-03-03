@@ -1,0 +1,1 @@
+export const greenCol = "#2aecb2"
