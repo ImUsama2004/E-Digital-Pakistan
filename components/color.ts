@@ -1,1 +1,0 @@
-xport const greenCol = "#2aecb2"

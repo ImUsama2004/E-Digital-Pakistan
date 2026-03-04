@@ -93,7 +93,7 @@ export default function ToptalHero() {
               {/* REPLACED CODE: HeroCard Component with Mobile Controls */}
               <div className="w-full order-2 lg:order-2 relative">
                  {/* Re-adding the mobile controls around the component to maintain functionality */}
-                 <div className="absolute inset-x-0 top-[140px] sm:hidden flex justify-between px-2 z-50 pointer-events-none">
+                 <div className="absolute inset-x-0 top-35 sm:hidden flex justify-between px-2 z-50 pointer-events-none">
                     <button onClick={handlePrev} className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg pointer-events-auto active:scale-90"><ChevronLeft size={20}/></button>
                     <button onClick={handleNext} className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg pointer-events-auto active:scale-90"><ChevronRight size={20}/></button>
                  </div>
@@ -129,9 +129,9 @@ export default function ToptalHero() {
           /* Services View */
           <motion.div key="services" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="w-full max-w-6xl px-4 sm:px-10 flex flex-col lg:grid lg:grid-cols-[1fr_1fr] mt-4 lg:mt-10 gap-10 items-center">
             <div className="w-full order-1 lg:order-2 flex flex-col gap-6">
-              <div className="relative group w-full aspect-[4/5] sm:aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl bg-white border-4 border-white">
+              <div className="relative group w-full aspect-4/5 sm:aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl bg-white border-4 border-white">
                 <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80" className="w-full h-full object-cover" alt="Services" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent p-6 flex flex-col justify-end gap-4">
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/10 to-transparent p-6 flex flex-col justify-end gap-4">
                   <div className="w-14 h-14 bg-[#00d68f] rounded-full flex items-center justify-center self-center sm:self-start shadow-xl">
                     <PlayCircle className="text-white w-8 h-8" />
                   </div>
