@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, CheckCircle2, Box, Globe, PlayCircle  } from 'lucide-react';
+import { ChevronLeft, ChevronRight, PlayCircle } from 'lucide-react';
+import HeroCard from "@/components/HeroCard"; // Ensure this path is correct
 
 const talentData = [
   { id: 1, name: "Cheryl Da Silva", role: "Marketing Strategist", previous: "Google", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800", logo: "https://www.svgrepo.com/show/475656/google-color.svg" },
@@ -47,46 +48,36 @@ export default function ToptalHero() {
       `}</style>
 
       {/* Navigation Toggle */}
-          <div className="flex items-center justify-center gap-4 mb-8 w-full">
-      {/* Text Label */}
-      <p className="text-[14px] font-semibold text-gray-500 whitespace-nowrap">
-        I'm looking for
-      </p>
-
-      {/* Main Toggle Pill */}
-      <div className="flex items-center bg-[#d9dde7] rounded-full p-1 border border-white/30 shadow-sm">
-        <div className="flex bg-white/40 rounded-full p-1">
-          <button 
-            onClick={() => setView('talent')} 
-            className={`px-6 sm:px-8 py-2 rounded-full font-bold text-[13px] transition-all cursor-pointer ${
-              view === 'talent' 
-              ? 'bg-white text-[#2aecb2] shadow-md' 
-              : 'text-gray-600 hover:text-gray-900'
-            }`}
-          >
-            Talent
-          </button>
-          
-          <button 
-            onClick={() => setView('services')} 
-            className={`px-6 sm:px-8 py-2 rounded-full font-bold text-[13px] transition-all cursor-pointer ${
-              view === 'services' 
-              ? 'bg-white text-[#2aecb2] shadow-md' 
-              : 'text-gray-600 hover:text-gray-900'
-            }`}
-          >
-            Services
-          </button>
+      <div className="flex items-center justify-center gap-4 mb-8 w-full">
+        <p className="text-[14px] font-semibold text-gray-500 whitespace-nowrap">I'm looking for</p>
+        <div className="flex items-center bg-[#d9dde7] rounded-full p-1 border border-white/30 shadow-sm">
+          <div className="flex bg-white/40 rounded-full p-1">
+            <button 
+              onClick={() => setView('talent')} 
+              className={`px-6 sm:px-8 py-2 rounded-full font-bold text-[13px] transition-all cursor-pointer ${
+                view === 'talent' ? 'bg-white text-[#2aecb2] shadow-md' : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              Talent
+            </button>
+            <button 
+              onClick={() => setView('services')} 
+              className={`px-6 sm:px-8 py-2 rounded-full font-bold text-[13px] transition-all cursor-pointer ${
+                view === 'services' ? 'bg-white text-[#2aecb2] shadow-md' : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              Services
+            </button>
+          </div>
         </div>
       </div>
-    </div>
 
       <AnimatePresence mode="wait">
         {view === 'talent' ? (
           <motion.div key="talent" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="w-full max-w-6xl px-4 sm:px-10">
             <div className="flex flex-col lg:grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center mt-4 lg:mt-10 lg:-ml-14">
               
-              {/* Left Content */}
+              {/* Left Content Area */}
               <div className="text-center lg:text-left order-1 lg:order-1">
                 <h1 className="text-3xl sm:text-5xl lg:text-[56px] font-bold text-[#1a1c21] leading-[1.15]">
                   Hire the <span className="underline decoration-[#c1c7d6] underline-offset-4 lg:underline-offset-8 decoration-2">Top 3%</span> of World Talent
@@ -99,78 +90,44 @@ export default function ToptalHero() {
                 </button>
               </div>
 
-              {/* Right Profile Section (Made Smaller) */}
-              <div className="w-full order-1 lg:order-2">
-                <div className="relative w-full max-w-[300px] mx-auto sm:max-w-[480px] lg:max-w-[440px] bg-white lg:bg-transparent rounded-[2rem] shadow-xl lg:shadow-none overflow-hidden lg:overflow-visible">
-                  
-                  {/* Portrait with White Shade Gradient */}
-                  <div className="relative h-[280px]  sm:h-[350px] lg:h-[450px] lg:-left-28 bg-[#f0f2f8] lg:rounded-[2.5rem] overflow-hidden">
-                    <AnimatePresence mode="wait">
-                      <motion.img 
-                        key={current.id} 
-                        src={current.image} 
-                        initial={{ opacity: 0 }} 
-                        animate={{ opacity: 1 }} 
-                        className="w-full lg:w-80 sm:h-full lg:h-full object-cover sm:w-60 object-top" 
-                      />
-                    </AnimatePresence>
-                    
-                    {/* The White Shade (Gradient) */}
-                  <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white via-white/20 to-transparent z-20" /></div>
-
-                  {/* Floating/Stacked Stats Card (Slimmer) */}
-                  <motion.div 
-                    key={`stats-${current.id}`} 
-                    initial={{ y: 20, opacity: 0 }} 
-                    animate={{ y: 0, opacity: 1 }} 
-                    className="relative p-6 sm:absolute sm:-top-0 sm:-right-0 sm:h-98 sm:w-[240px]
-                     lg:absolute lg:-top-0 lg:-right-16 h-36 lg:h-112.5 bg-white lg:rounded-r-[2.5rem] lg:border border-gray-50 lg:w-[290px] z-30"
-                  >
-                    <Globe size={142.5} fill="#ffffff" className="text-[#dbd9d9] mb-5 mx-auto hidden lg:block " />
-                    <h3 className="text-[#204ecf] font-bold text-xl lg:text-[19px]">{current.name}</h3>
-                    <div className="flex items-center gap-1.5 mt-2 text-[#00a369] font-extrabold text-[10px] uppercase tracking-wider">
-                      <CheckCircle2 size={14} fill="#00d68f" className="text-white" /> Verified Expert
-                    </div>
-                    <div className="flex items-center gap-2 mt-3 text-[#6b7280] text-sm"><Box size={16} /> {current.role}</div>
-                    
-                    <div className="mt-12 pt-5 border-t border-gray-100">
-                      <p className="text-[10px] font-bold text-gray-400 uppercase">Previously at</p>
-                      <div className="flex items-center gap-3 mt-2">
-                        <img src={current.logo} className="w-7 h-7 object-contain" alt="logo" />
-                        <span className="text-2xl lg:text-[28px] font-bold text-[#1a1c21] tracking-tighter">{current.previous}</span>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                </div>
+              {/* REPLACED CODE: HeroCard Component with Mobile Controls */}
+              <div className="w-full order-2 lg:order-2 relative">
+                 {/* Re-adding the mobile controls around the component to maintain functionality */}
+                 <div className="absolute inset-x-0 top-[140px] sm:hidden flex justify-between px-2 z-50 pointer-events-none">
+                    <button onClick={handlePrev} className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg pointer-events-auto active:scale-90"><ChevronLeft size={20}/></button>
+                    <button onClick={handleNext} className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg pointer-events-auto active:scale-90"><ChevronRight size={20}/></button>
+                 </div>
+                 
+                 <HeroCard current={current} />
               </div>
             </div>
 
-            {/* Carousel with Side Arrows */}
-            <div className="relative mt-16 px-4 sm:px-12">
-              <button onClick={handlePrev} className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#2aecb2] hover:text-white transition-all z-50 border border-gray-100 cursor-pointer active:scale-90"><ChevronLeft size={22} /></button>
+            {/* Bottom Scrollable Cards */}
+            <div className="relative mt-16 px-4 sm:px-12 hidden sm:block">
+              <button onClick={handlePrev} className="absolute top-1/2 left-0 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#2aecb2] hover:text-white transition-all z-50 border border-gray-100 cursor-pointer active:scale-90">
+                <ChevronLeft size={22} />
+              </button>
+
               <div ref={scrollRef} className="flex gap-4 overflow-x-auto no-scrollbar py-4 snap-x">
                 {talentData.map((t, idx) => (
-                  <div key={t.id} onClick={() => updateIndex(idx)} className={`shrink-0 w-64 h-28 sm:w-72 bg-white rounded-xl flex items-center p-3 cursor-pointer transition-all border-2 snap-center ${activeIndex === idx ? 'border-[#2aecb2] shadow-lg translate-y-[-4px]' : 'border-transparent opacity-60'}`}>
-                    <img src={t.image} className="w-20 h-24 rounded-lg object-cover object-top mr-3" />
+                  <div key={t.id} onClick={() => updateIndex(idx)} className={`shrink-0 w-80 h-32 sm:w-80 bg-white rounded-xl flex items-center p-3 cursor-pointer transition-all border-2 snap-center ${activeIndex === idx ? 'border-[#2aecb2] shadow-lg -translate-y-1' : 'border-transparent opacity-60'}`}>
+                    <img src={t.image} className="w-20 h-24 rounded-lg object-cover object-top mr-3" alt={t.name} />
                     <div className="min-w-0">
-                      <h4 className="font-bold text-[#1a1c21] text-lg truncate">{t.name}
-                      </h4>
-                      <p className="text-[9px] text-gray-400 font-bold uppercase truncate">{t.role}
-                      </p>
+                      <h4 className="font-bold text-[#1a1c21] text-lg truncate">{t.name}</h4>
+                      <p className="text-[9px] text-gray-400 font-bold uppercase truncate">{t.role}</p>
                     </div>
                   </div>
                 ))}
               </div>
-              <button onClick={handleNext} className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#2aecb2] hover:text-white transition-all z-50 border border-gray-100 cursor-pointer active:scale-90"><ChevronRight size={22} /></button>
-            </div>
 
+              <button onClick={handleNext} className="absolute top-1/2 right-0 -translate-y-1/2 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-[#2aecb2] hover:text-white transition-all z-50 border border-gray-100 cursor-pointer active:scale-90">
+                <ChevronRight size={22} />
+              </button>
+            </div>
           </motion.div>
         ) : (
-          /* REDESIGNED SERVICES VIEW (Responsive & High End) */
+          /* Services View */
           <motion.div key="services" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="w-full max-w-6xl px-4 sm:px-10 flex flex-col lg:grid lg:grid-cols-[1fr_1fr] mt-4 lg:mt-10 gap-10 items-center">
-            
-            {/* Story Style Video Card for Mobile */}
             <div className="w-full order-1 lg:order-2 flex flex-col gap-6">
               <div className="relative group w-full aspect-[4/5] sm:aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl bg-white border-4 border-white">
                 <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80" className="w-full h-full object-cover" alt="Services" />
@@ -181,7 +138,6 @@ export default function ToptalHero() {
                   <p className="text-white font-bold text-lg sm:text-xl leading-tight">Bridgestone reinvents tire management with data-driven software.</p>
                 </div>
               </div>
-
               <div className="grid grid-cols-4 gap-4 opacity-30 grayscale items-center px-4">
                  {partnerLogos.slice(0, 4).map(l => <span key={l} className="text-[9px] font-black text-center">{l}</span>)}
               </div>

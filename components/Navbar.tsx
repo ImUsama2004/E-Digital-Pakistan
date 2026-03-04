@@ -3,11 +3,10 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, X, Menu, ArrowRight, Briefcase, PenTool, Users, LogIn, UserPlus, Sparkles } from "lucide-react";
+import { X, Menu, ArrowRight, Briefcase, PenTool, Users, LogIn, UserPlus } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [expanded, setExpanded] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -21,18 +20,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Unified Navigation: Functional links for both Desktop and Mobile
   const navLinks = [
+    { name: "Talent", href: "/talent", icon: Users },
     { name: "Consulting & Services", href: "/services", icon: Briefcase },
     { name: "Blog", href: "/blogs", icon: PenTool },
     { name: "About Us", href: "/about-us", icon: Users },
-  ];
-
-  const mobileMenuItems = [
-    { name: "Hire Talent", href: "/hiretalent", icon: Users, subItems: ["Overview", "Enterprise", "Startups"] },
-    { name: "Consulting & Services", href: "/services", icon: Briefcase, subItems: ["Strategy", "Development", "Design"] },
-    { name: "Clients", href: "#", icon: Sparkles },
-    { name: "Blog", href: "#", icon: PenTool },
-    { name: "About Us", href: "#", icon: Users },
   ];
 
   return (
@@ -51,6 +44,7 @@ export default function Navbar() {
             <motion.div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#2aecb2] scale-x-0 group-hover:scale-x-100 transition-transform" />
           </Link>
 
+          {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-2">
             {navLinks.map((link, i) => (
               <Link key={i} href={link.href} className="px-4 py-2 text-sm font-medium text-slate-700 hover:text-black rounded-lg hover:bg-slate-100 transition-all">
@@ -59,6 +53,7 @@ export default function Navbar() {
             ))}
           </nav>
 
+          {/* Desktop Actions */}
           <div className="hidden lg:flex items-center gap-3">
             <Link href="/login" className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-black rounded-lg hover:bg-slate-100 transition-all flex items-center gap-2">
               <LogIn size={16} /> Log In
@@ -73,10 +68,8 @@ export default function Navbar() {
             </motion.div>
           </div>
 
+          {/* Mobile Menu Trigger */}
           <div className="flex lg:hidden items-center gap-3">
-            <Link href="/apply" className="bg-[#2aecb2] text-slate-900 px-4 py-2 rounded-full font-bold text-xs uppercase">
-              Apply
-            </Link>
             <button onClick={() => setOpen(true)} className="p-2 hover:bg-slate-100 rounded-lg transition-colors">
               <Menu size={24} />
             </button>
@@ -89,7 +82,7 @@ export default function Navbar() {
           <>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40" onClick={() => setOpen(false)} />
             
-            <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "spring", damping: 25 }} className="fixed right-0 top-0 bottom-0 w-full max-w-sm bg-white z-50 flex flex-col">
+            <motion.div initial={{ x: "100%" }} animate={{ x: 0 }} exit={{ x: "100%" }} transition={{ type: "spring", damping: 25, stiffness: 200 }} className="fixed right-0 top-0 bottom-0 w-full max-w-sm bg-white z-50 flex flex-col">
               
               <div className="flex items-center justify-between px-6 h-20 border-b">
                 <Image src="/images/EDP-logo-blue.png" alt="Logo" width={100} height={32} />
@@ -98,45 +91,29 @@ export default function Navbar() {
                 </button>
               </div>
 
+              {/* Mobile Navigation Links */}
               <nav className="flex-1 overflow-y-auto py-4">
-                {mobileMenuItems.map((item, i) => {
+                {navLinks.map((item, i) => {
                   const Icon = item.icon;
-                  const isExpanded = expanded === item.name;
-                  
                   return (
                     <div key={i} className="px-4">
-                      <div className="flex items-center justify-between py-4 border-b">
-                        <Link href={item.href} onClick={() => !item.subItems && setOpen(false)} className="flex items-center gap-3 font-semibold hover:text-[#2aecb2] transition-colors">
-                          <Icon size={20} className="text-[#2aecb2]" /> {item.name}
-                        </Link>
-                        {item.subItems && (
-                          <button onClick={() => setExpanded(isExpanded ? null : item.name)} className="p-2 hover:bg-slate-100 rounded-lg transition-all">
-                            <motion.div animate={{ rotate: isExpanded ? 180 : 0 }}>
-                              <ChevronDown size={18} />
-                            </motion.div>
-                          </button>
-                        )}
-                      </div>
-                      
-                      <AnimatePresence>
-                        {item.subItems && isExpanded && (
-                          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-                            <div className="bg-slate-50 rounded-lg my-2 p-2 space-y-1">
-                              {item.subItems.map((sub, idx) => (
-                                <Link key={idx} href="#" onClick={() => setOpen(false)} className="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white transition-all">
-                                  <span className="text-slate-600">{sub}</span>
-                                  <ArrowRight size={14} className="text-[#2aecb2]" />
-                                </Link>
-                              ))}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                      <Link 
+                        href={item.href} 
+                        onClick={() => setOpen(false)} 
+                        className="flex items-center justify-between py-5 border-b font-semibold hover:text-[#2aecb2] transition-colors"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Icon size={20} className="text-[#2aecb2]" /> 
+                          {item.name}
+                        </div>
+                        <ArrowRight size={18} className="text-slate-300" />
+                      </Link>
                     </div>
                   );
                 })}
               </nav>
 
+              {/* Mobile CTA Footer */}
               <div className="p-6 bg-slate-50 border-t space-y-3">
                 <Link href="/hiretalent" onClick={() => setOpen(false)} className="w-full bg-[#2aecb2] text-slate-900 py-4 rounded-xl font-bold text-center shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
                   Hire Top Talent <ArrowRight size={18} />
@@ -148,7 +125,6 @@ export default function Navbar() {
                   <Link href="/login" onClick={() => setOpen(false)} className="py-3 border-2 border-slate-300 rounded-xl font-semibold text-center hover:border-[#2aecb2] transition-all">
                     Log In
                   </Link>
-                  
                 </div>
               </div>
             </motion.div>

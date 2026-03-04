@@ -1,1 +1,1 @@
-export const greenCol = "#2aecb2"
+xport const greenCol = "#2aecb2"
