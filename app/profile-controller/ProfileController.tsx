@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Linkedin, Upload, Info, X, ChevronDown, Check, Plus, Globe, Languages } from 'lucide-react';
+import { section } from 'framer-motion/client';
 
 const ProfileController = () => {
   const [activeSection, setActiveSection] = useState('IMPORT YOUR PROFILE');
@@ -15,7 +16,15 @@ const ProfileController = () => {
 
   // State for Gender Selection
   const [selectedGender, setSelectedGender] = useState('');
-
+  const countryData = [
+    { name: 'Senegal', code: '+221' },
+    { name: 'Pakistan', code: '+92' },
+    { name: 'United States', code: '+1' },
+    { name: 'United Kingdom', code: '+44' },
+    { name: 'France', code: '+33' },
+    { name: 'India', code: '+91' },
+    { name: 'United Arab Emirates', code: '+971' },
+  ];
   const sections = [
     { id: 'import', label: 'IMPORT YOUR PROFILE' },
     { id: 'contact', label: 'CONTACT INFORMATION' },
@@ -78,7 +87,14 @@ const ProfileController = () => {
             <OracleInput label="First Name" required />
             <OracleInput label="Email Address" type="email" value="codewithadeel1@gmail.com" hasCheck />
             <div className=" flex gap-4">
-              <div className="w-1/3"><OracleInput label="Country code" value="+221"  /></div>
+            <div className="w-1/3">
+              <OracleInput 
+                label="Country code" 
+                value="+221" 
+                list={countryData}
+                placeholder= "" 
+              />
+            </div>
               <div className="w-2/3 "><OracleInput label="Phone Number" /></div>
             </div>
           </div>
@@ -281,15 +297,37 @@ const ProfileController = () => {
 };
 
 // COMPONENT: INPUT
-const OracleInput = ({ label, required, hasCheck, isDropdown, hasX, value, list, ...props }: any) => {
+const OracleInput = ({ label, required, hasCheck, isDropdown, value, list, ...props }: any) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [inputValue, setInputValue] = React.useState(value || "");
+  const [isTyping, setIsTyping] = React.useState(false);
+
+  // 1. Handle normal dropdowns (strings) vs searchable lists (objects)
+  const filteredList = list?.filter((item: any) => {
+    if (!isTyping) return true;
+    const searchItem = inputValue.toLowerCase();
+    
+    // If it's an object {name, code}, search both
+    if (typeof item === 'object') {
+      return (
+        item.name.toLowerCase().includes(searchItem) ||
+        item.code.toLowerCase().includes(searchItem)
+      );
+    }
+    // If it's just a string, search the string
+    return item.toLowerCase().includes(searchItem);
+  });
+
   return (
-    <div className="w-full">
+    <div className="w-full relative">
       {label && (
         <label className="text-[13px] font-bold text-[#555] mb-2.5 block">
           {label} {required && <span className="text-[#2aecb2] ml-0.5">*</span>}
         </label>
       )}
+
       <div className="relative">
+        {/* If it's a standard dropdown like "Country" or "Language" */}
         {isDropdown ? (
           <select
             {...props}
@@ -297,32 +335,76 @@ const OracleInput = ({ label, required, hasCheck, isDropdown, hasX, value, list,
             className="w-full px-6 py-3 border border-gray-200 rounded-full text-sm focus:border-[#2aecb2] focus:ring-4 focus:ring-emerald-50/50 outline-none transition-all shadow-sm appearance-none bg-white cursor-pointer"
           >
             <option value="" disabled>Select an option</option>
-            {list?.map((item: string) => (
-              <option key={item} value={item}>{item}</option>
+            {list?.map((item: any) => (
+              <option key={typeof item === 'object' ? item.code : item} value={typeof item === 'object' ? item.code : item}>
+                {typeof item === 'object' ? `${item.name} (${item.code})` : item}
+              </option>
             ))}
           </select>
         ) : (
-          <input 
-            {...props} 
-            defaultValue={value} 
-            className="w-full px-6 py-3 border border-gray-200 rounded-full text-sm focus:border-[#2aecb2] focus:ring-4 focus:ring-emerald-50/50 outline-none transition-all shadow-sm placeholder:text-gray-300" 
+          /* Searchable Input (The one you wanted for Country Code) */
+          <input
+            {...props}
+            value={inputValue}
+            autoComplete="off"
+            onChange={(e) => {
+              setInputValue(e.target.value);
+              setIsTyping(true);
+              setIsOpen(true);
+            }}
+            onFocus={() => {
+              setIsOpen(true);
+              setIsTyping(false);
+            }}
+            onBlur={() => setTimeout(() => setIsOpen(false), 200)}
+            className="w-full px-6 py-3 border border-gray-200 rounded-full text-sm focus:border-[#2aecb2] focus:ring-4 focus:ring-emerald-50/50 outline-none transition-all shadow-sm"
           />
         )}
 
+        {/* Icons */}
         <div className="absolute right-5 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
           {hasCheck && (
             <div className="bg-[#01a070] rounded-full p-0.5">
               <Check size={10} className="text-white" strokeWidth={4} />
             </div>
           )}
-          {hasX && !isDropdown && <X size={14} className="text-gray-300 pointer-events-auto cursor-pointer" />}
-          {isDropdown && <ChevronDown size={18} className="text-gray-400" />}
+          {list && <ChevronDown size={18} className={`text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />}
         </div>
+
+        {/* Custom Searchable List UI */}
+        {!isDropdown && isOpen && list && (
+          <div className="absolute z-9999 w-full mt-2 bg-white border border-gray-100 rounded-2xl shadow-xl max-h-60 overflow-y-auto overflow-x-hidden">
+            {filteredList.length > 0 ? (
+              filteredList.map((item: any) => (
+                <div
+                  key={typeof item === 'object' ? item.code + item.name : item}
+                  onMouseDown={() => {
+                    // Set code if object, otherwise set string
+                    setInputValue(typeof item === 'object' ? item.code : item);
+                    setIsTyping(false);
+                    setIsOpen(false);
+                  }}
+                  className="px-6 py-3 text-sm hover:bg-emerald-50 hover:text-[#2aecb2] cursor-pointer transition-colors flex justify-between items-center border-b border-gray-50 last:border-none"
+                >
+                  {typeof item === 'object' ? (
+                    <>
+                      <span className="font-medium text-gray-700">{item.name}</span>
+                      <span className="text-[#2aecb2] font-bold">{item.code}</span>
+                    </>
+                  ) : (
+                    <span>{item}</span>
+                  )}
+                </div>
+              ))
+            ) : (
+              <div className="px-6 py-3 text-xs text-gray-400">No match found...</div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
 };
-
 // COMPONENT: RADIO
 const RadioQuestion = ({ label, required }: any) => {
   const [selected, setSelected] = useState<string | null>(null);
