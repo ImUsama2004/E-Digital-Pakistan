@@ -40,7 +40,7 @@ export default function ApplyForm() {
     window.alert("Form submitted")
     // 3. Navigate to the desired path
     // router.push("/profile-controller");
-    
+    // 
   };
 
   return (

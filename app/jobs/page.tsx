@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import JobCard from './JobCard';
 import JobDetail from './JobDetail';
-import ProfileController from './ProfileController'; // Import your new form
+import ProfileController from './ProfileController';
 
 const JOBS_DATA = [
   {
@@ -28,37 +28,47 @@ const JOBS_DATA = [
 
 export default function JobPage() {
   const [selectedJob, setSelectedJob] = useState(JOBS_DATA[0]);
-  const [isApplying, setIsApplying] = useState(false); // New state to handle view
+  const [isApplying, setIsApplying] = useState(false);
+  const [showMobileDetail, setShowMobileDetail] = useState(false);
+
+  const handleSelectJob = (job: any) => {
+    setSelectedJob(job);
+    setShowMobileDetail(true);
+  };
 
   return (
     <div className="h-screen flex flex-col bg-[#f8fafc] overflow-hidden">
       
-      {/* Dynamic Header */}
-      <div className="bg-white border-b py-6 px-8 shrink-0 flex justify-between items-center">
+      {/* RESPONSIVE HEADER */}
+      <div className="bg-white border-b py-4 px-6 md:py-6 md:px-8 shrink-0 flex justify-between items-center z-20">
         <div>
-           <h1 className="text-2xl font-extrabold text-slate-900">EDP Careers</h1>
+           <h1 className="text-xl md:text-2xl font-extrabold text-slate-900">EDP Careers</h1>
            {isApplying && (
-             <p className="text-sm text-[#2aecb2] font-bold">Applying for: {selectedJob.title}</p>
+             <p className="text-[10px] md:text-sm text-[#2aecb2] font-bold uppercase">Applying: {selectedJob.title}</p>
            )}
         </div>
         
-        {/* Back Button if applying */}
-        {isApplying && (
+        {/* Back Button for Mobile Detail or Global Application View */}
+        {(isApplying || showMobileDetail) && (
           <button 
-            onClick={() => setIsApplying(false)}
-            className="text-sm font-bold text-slate-500 hover:text-slate-800 flex items-center gap-2"
+            onClick={() => {
+              setIsApplying(false);
+              setShowMobileDetail(false);
+            }}
+            className="text-sm font-bold text-slate-500 hover:text-slate-800 flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors"
           >
-            ← Back to Jobs
+            ← Back <span className="hidden sm:inline">to Jobs</span>
           </button>
         )}
       </div>
 
-      <div className="flex-1 flex overflow-hidden w-full">
+      <div className="flex-1 flex overflow-hidden w-full relative">
         {!isApplying ? (
-          // VIEW 1: JOB EXPLORATION
           <div className="flex-1 flex overflow-hidden max-w-7xl mx-auto w-full">
-            <div className="w-full lg:w-1/3 flex flex-col border-r border-slate-200">
-              <div className="p-4 bg-[#f8fafc] border-b text-sm font-bold text-slate-500 uppercase">
+            
+            {/* JOB LIST: Hidden on mobile if viewing detail */}
+            <div className={`w-full lg:w-1/3 flex flex-col border-r border-slate-200 bg-[#f8fafc] ${showMobileDetail ? 'hidden lg:flex' : 'flex'}`}>
+              <div className="p-4 bg-white border-b text-[10px] font-black text-slate-400 uppercase tracking-widest">
                 {JOBS_DATA.length} Jobs Available
               </div>
               <div className="flex-1 overflow-y-auto p-4 space-y-3">
@@ -67,14 +77,14 @@ export default function JobPage() {
                     key={job.id} 
                     job={job} 
                     isSelected={selectedJob.id === job.id} 
-                    onClick={() => setSelectedJob(job)} 
+                    onClick={() => handleSelectJob(job)} 
                   />
                 ))}
               </div>
             </div>
 
-            <div className="hidden lg:block flex-1 overflow-hidden">
-              {/* Pass the onApply function to the detail component */}
+            {/* JOB DETAIL: Hidden on mobile if viewing list */}
+            <div className={`flex-1 overflow-hidden bg-white ${showMobileDetail ? 'flex' : 'hidden lg:flex'}`}>
               <JobDetail 
                 job={selectedJob} 
                 onApply={() => setIsApplying(true)} 
@@ -82,9 +92,11 @@ export default function JobPage() {
             </div>
           </div>
         ) : (
-          // VIEW 2: APPLICATION FORM
+          /* APPLICATION FORM: Full screen on all devices */
           <div className="flex-1 overflow-y-auto bg-white">
-            <ProfileController />
+            <div className="max-w-3xl mx-auto p-4 md:p-8">
+              <ProfileController />
+            </div>
           </div>
         )}
       </div>
