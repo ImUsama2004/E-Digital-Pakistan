@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Linkedin, Upload, Info, X, ChevronDown, Check, Plus, Globe, Languages } from 'lucide-react';
-import { section } from 'framer-motion/client';
+import { Linkedin, Upload, Info, X, ChevronDown, Check } from 'lucide-react';
 
 const ProfileController = () => {
   const [activeSection, setActiveSection] = useState('IMPORT YOUR PROFILE');
@@ -13,18 +12,18 @@ const ProfileController = () => {
   const [showEduForm, setShowEduForm] = useState(false);
   const [showLangForm, setShowLangForm] = useState(false);
   const [showESignDetails, setShowESignDetails] = useState(false);
-
-  // State for Gender Selection
   const [selectedGender, setSelectedGender] = useState('');
+
   const countryData = [
-    { name: 'Senegal', code: '+221' },
     { name: 'Pakistan', code: '+92' },
+    { name: 'Senegal', code: '+221' },
     { name: 'United States', code: '+1' },
     { name: 'United Kingdom', code: '+44' },
     { name: 'France', code: '+33' },
     { name: 'India', code: '+91' },
     { name: 'United Arab Emirates', code: '+971' },
   ];
+
   const sections = [
     { id: 'import', label: 'IMPORT YOUR PROFILE' },
     { id: 'contact', label: 'CONTACT INFORMATION' },
@@ -86,16 +85,11 @@ const ProfileController = () => {
             <OracleInput label="Last Name" required />
             <OracleInput label="First Name" required />
             <OracleInput label="Email Address" type="email" value="codewithadeel1@gmail.com" hasCheck />
-            <div className=" flex gap-4">
-            <div className="w-1/3">
-              <OracleInput 
-                label="Country code" 
-                value="+221" 
-                list={countryData}
-                placeholder= "" 
-              />
-            </div>
-              <div className="w-2/3 "><OracleInput label="Phone Number" /></div>
+            <div className="flex gap-4">
+              <div className="w-1/3">
+                <OracleInput label="Country code" value="+92" list={countryData} />
+              </div>
+              <div className="w-2/3"><OracleInput label="Phone Number" /></div>
             </div>
           </div>
         </section>
@@ -111,10 +105,10 @@ const ProfileController = () => {
             <OracleInput 
                 label="Country" 
                 required 
-                value="Senegal" 
+                value="Pakistan" 
                 isDropdown 
                 hasX 
-                list={['Senegal', 'Pakistan', 'United States', 'United Kingdom', 'Canada', 'France']} 
+                list={['Pakistan', 'Senegal', 'United States', 'United Kingdom', 'Canada', 'France']} 
             />
             <OracleInput label="Address Line 1" required />
             <OracleInput label="Address Line 2" />
@@ -143,7 +137,7 @@ const ProfileController = () => {
                   ))}
                 </motion.div>
               ) : (
-                <motion.div key="form" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="w-full space-y-10 p-10 border border-emerald-100 rounded-4xl bg-emerald-50/10">
+                <motion.div key="form" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="w-full space-y-10 p-10 border border-emerald-100 rounded-[40px] bg-emerald-50/10">
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="font-black text-[#2aecb2] uppercase text-[12px] tracking-widest">{showExpForm ? 'Add Experience' : 'Add Education'}</h3>
                     <X className="cursor-pointer text-gray-400 hover:text-red-500" onClick={() => {setShowExpForm(false); setShowEduForm(false);}} />
@@ -164,7 +158,7 @@ const ProfileController = () => {
           </div>
         </section>
 
-        {/* 5. SUPPORTING DOCUMENTS AND URLS */}
+        {/* 5. SUPPORTING DOCUMENTS */}
         <section id="docs" className="space-y-10">
           <h2 className="text-[22px] font-semibold">Supporting Documents and URLs</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -176,7 +170,7 @@ const ProfileController = () => {
           </div>
         </section>
 
-        {/* 6. MISCELLANEOUS DOCUMENTS */}
+        {/* 6. MISC DOCUMENTS */}
         <section id="misc" className="space-y-10">
           <h2 className="text-[22px] font-semibold">Miscellaneous Documents</h2>
           <div className="grid grid-cols-3 gap-6">
@@ -191,7 +185,7 @@ const ProfileController = () => {
           <h2 className="text-[22px] font-semibold">Languages</h2>
           <AnimatePresence mode="wait">
             {showLangForm ? (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-8 p-10 border border-gray-100 rounded-4xl bg-gray-50/50">
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-8 p-10 border border-gray-100 rounded-[40px] bg-gray-50/50">
                 <div className="flex justify-between items-center"><span className="text-[11px] font-black text-gray-400 uppercase tracking-widest">New Language</span><X size={16} className="cursor-pointer" onClick={() => setShowLangForm(false)}/></div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <OracleInput label="Language" isDropdown required list={['English', 'French', 'Urdu', 'Arabic', 'Spanish']} />
@@ -209,22 +203,20 @@ const ProfileController = () => {
           </AnimatePresence>
         </section>
 
-        {/* 8. APPLICATION QUESTIONS */}
+        {/* 8. QUESTIONS */}
         <section id="questions" className="space-y-12">
           <h2 className="text-[22px] font-semibold">Application Questions</h2>
           <div className="space-y-10">
-            <RadioQuestion label="Have you previously been employed by NRC/NORCAP?" required />
-            <RadioQuestion label="Have you been employed by NRC/NORCAP within the last two years?" required />
+            <RadioQuestion label="Have you previously been employed by E-Digital Pakistan?" required />
             <RadioQuestion label="I confirm that everything in my application is true and correct." required />
           </div>
         </section>
 
-        {/* 9. EXTRA INFORMATION */}
+        {/* 9. EXTRA INFO */}
         <section id="extra" className="space-y-10">
           <h2 className="text-[22px] font-semibold">Extra Information</h2>
           <div className="space-y-10">
-            <OracleInput label="Citizenship" isDropdown list={['Senegalese', 'Pakistani', 'American', 'British']} />
-            <OracleInput label="Current country of residence" isDropdown list={['Senegal', 'Pakistan', 'USA', 'UK']} />
+            <OracleInput label="Citizenship" isDropdown list={['Pakistani', 'American', 'British']} />
             <div className="space-y-4">
               <label className="text-[13px] font-bold text-[#555]">Gender</label>
               <div className="flex gap-4">
@@ -247,14 +239,14 @@ const ProfileController = () => {
           <h2 className="text-[22px] font-semibold">E-Signature</h2>
           <div className="space-y-4">
             <p className="text-[13px] text-gray-600 leading-relaxed">
-              By signing below, I certify that the information provided is true...
+              By signing below, I certify that the information provided is true and correct...
               {!showESignDetails && <span onClick={() => setShowESignDetails(true)} className="text-[#2aecb2] font-bold cursor-pointer ml-2 hover:underline">+ Show More</span>}
             </p>
             <AnimatePresence>
               {showESignDetails && (
                 <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="overflow-hidden">
                   <div className="text-[13px] text-gray-500 bg-gray-50 p-6 rounded-2xl border-l-4 border-[#2aecb2] mb-4">
-                    Full disclosure terms here...
+                    All information submitted will be handled according to our privacy policy.
                     <button onClick={() => setShowESignDetails(false)} className="block mt-3 text-[#2aecb2] font-bold text-[11px] uppercase tracking-tighter hover:underline">Show Less</button>
                   </div>
                 </motion.div>
@@ -266,13 +258,13 @@ const ProfileController = () => {
 
         <div className="flex justify-end pt-10">
           <button className="bg-white border-[2.5px] border-[#2aecb2] text-[#2aecb2] px-16 py-3.5 rounded-full font-black text-xs uppercase tracking-[2.5px] hover:bg-[#2aecb2] hover:text-white transition-all shadow-xl active:scale-95">
-            Submit
+            Submit Application
           </button>
         </div>
       </div>
 
-      {/* RIGHT NAVIGATION */}
-      <aside className="w-90 sticky top-0 h-screen hidden lg:flex flex-col justify-center px-16 border-l border-gray-50 bg-white">
+      {/* RIGHT SIDEBAR NAV */}
+      <aside className="w-80 sticky top-0 h-screen hidden lg:flex flex-col justify-center px-12 border-l border-gray-50 bg-white">
         <div className="space-y-6 relative">
           <div className="absolute left-0.75 top-2 bottom-2 w-px bg-gray-100"></div>
           {sections.map((s) => (
@@ -281,11 +273,10 @@ const ProfileController = () => {
                 animate={{ 
                   backgroundColor: activeSection === s.label ? '#2aecb2' : '#E5E7EB',
                   scale: activeSection === s.label ? 1.2 : 1,
-                  boxShadow: activeSection === s.label ? '0 0 0 6px rgba(46, 236, 178, 0.1)' : '0 0 0 0px rgba(0,0,0,0)'
                 }}
                 className="w-2 h-2 rounded-full mr-5"
               />
-              <span className={`text-[10px] font-black  tracking-[1.5px] transition-colors duration-300 ${activeSection === s.label ? 'text-[#2aecb2]' : 'text-gray-400 group-hover:text-gray-600'}`}>
+              <span className={`text-[9px] font-black tracking-[1.5px] transition-colors duration-300 ${activeSection === s.label ? 'text-[#2aecb2]' : 'text-gray-400 group-hover:text-gray-600'}`}>
                 {s.label}
               </span>
             </div>
@@ -296,25 +287,27 @@ const ProfileController = () => {
   );
 };
 
-// COMPONENT: INPUT
-const OracleInput = ({ label, required, hasCheck, isDropdown, value, list, ...props }: any) => {
+// COMPONENT: INPUT (FIXED DESTRUCTURING)
+const OracleInput = ({ 
+    label, 
+    required, 
+    hasCheck, 
+    isDropdown, 
+    hasX, 
+    value, 
+    list, 
+    ...props 
+}: any) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [inputValue, setInputValue] = React.useState(value || "");
   const [isTyping, setIsTyping] = React.useState(false);
 
-  // 1. Handle normal dropdowns (strings) vs searchable lists (objects)
   const filteredList = list?.filter((item: any) => {
     if (!isTyping) return true;
     const searchItem = inputValue.toLowerCase();
-    
-    // If it's an object {name, code}, search both
     if (typeof item === 'object') {
-      return (
-        item.name.toLowerCase().includes(searchItem) ||
-        item.code.toLowerCase().includes(searchItem)
-      );
+      return item.name.toLowerCase().includes(searchItem) || item.code.toLowerCase().includes(searchItem);
     }
-    // If it's just a string, search the string
     return item.toLowerCase().includes(searchItem);
   });
 
@@ -327,7 +320,6 @@ const OracleInput = ({ label, required, hasCheck, isDropdown, value, list, ...pr
       )}
 
       <div className="relative">
-        {/* If it's a standard dropdown like "Country" or "Language" */}
         {isDropdown ? (
           <select
             {...props}
@@ -342,7 +334,6 @@ const OracleInput = ({ label, required, hasCheck, isDropdown, value, list, ...pr
             ))}
           </select>
         ) : (
-          /* Searchable Input (The one you wanted for Country Code) */
           <input
             {...props}
             value={inputValue}
@@ -352,16 +343,12 @@ const OracleInput = ({ label, required, hasCheck, isDropdown, value, list, ...pr
               setIsTyping(true);
               setIsOpen(true);
             }}
-            onFocus={() => {
-              setIsOpen(true);
-              setIsTyping(false);
-            }}
+            onFocus={() => { setIsOpen(true); setIsTyping(false); }}
             onBlur={() => setTimeout(() => setIsOpen(false), 200)}
             className="w-full px-6 py-3 border border-gray-200 rounded-full text-sm focus:border-[#2aecb2] focus:ring-4 focus:ring-emerald-50/50 outline-none transition-all shadow-sm"
           />
         )}
 
-        {/* Icons */}
         <div className="absolute right-5 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
           {hasCheck && (
             <div className="bg-[#01a070] rounded-full p-0.5">
@@ -371,15 +358,13 @@ const OracleInput = ({ label, required, hasCheck, isDropdown, value, list, ...pr
           {list && <ChevronDown size={18} className={`text-gray-400 transition-transform ${isOpen ? 'rotate-180' : ''}`} />}
         </div>
 
-        {/* Custom Searchable List UI */}
         {!isDropdown && isOpen && list && (
-          <div className="absolute z-9999 w-full mt-2 bg-white border border-gray-100 rounded-2xl shadow-xl max-h-60 overflow-y-auto overflow-x-hidden">
+          <div className="absolute z-[9999] w-full mt-2 bg-white border border-gray-100 rounded-2xl shadow-xl max-h-60 overflow-y-auto">
             {filteredList.length > 0 ? (
               filteredList.map((item: any) => (
                 <div
                   key={typeof item === 'object' ? item.code + item.name : item}
                   onMouseDown={() => {
-                    // Set code if object, otherwise set string
                     setInputValue(typeof item === 'object' ? item.code : item);
                     setIsTyping(false);
                     setIsOpen(false);
@@ -405,6 +390,7 @@ const OracleInput = ({ label, required, hasCheck, isDropdown, value, list, ...pr
     </div>
   );
 };
+
 // COMPONENT: RADIO
 const RadioQuestion = ({ label, required }: any) => {
   const [selected, setSelected] = useState<string | null>(null);
@@ -428,7 +414,9 @@ const RadioQuestion = ({ label, required }: any) => {
 // COMPONENT: UPLOAD
 const UploadBox = ({ label, sub, isLarge }: any) => (
   <div className={`border-2 border-dashed border-gray-200 rounded-[40px] p-10 flex flex-col items-center justify-center bg-white hover:border-[#2aecb2] transition-colors cursor-pointer group ${isLarge ? 'h-full py-16' : ''}`}>
-    <div className="bg-gray-50 p-4 rounded-full group-hover:bg-emerald-50 transition-colors mb-4"><Upload size={28} className="text-gray-300 group-hover:text-[#2aecb2]" /></div>
+    <div className="bg-gray-50 p-4 rounded-full group-hover:bg-emerald-50 transition-colors mb-4">
+      <Upload size={28} className="text-gray-300 group-hover:text-[#2aecb2]" />
+    </div>
     <p className="text-[11px] text-gray-400 font-medium mb-1">{label}</p>
     <p className="text-[10px] font-black text-[#2aecb2] uppercase tracking-widest">or {sub}</p>
   </div>

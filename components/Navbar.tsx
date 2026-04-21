@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Menu, ArrowRight, Briefcase, PenTool, Users, LogIn, UserPlus } from "lucide-react";
+// Added Search icon for the Jobs link
+import { X, Menu, ArrowRight, Briefcase, PenTool, Users, LogIn, UserPlus, Search } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -20,8 +21,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Unified Navigation: Functional links for both Desktop and Mobile
+  // Updated Navigation: "Jobs" is now its own separate entry
   const navLinks = [
+    { name: "Jobs", href: "/jobs", icon: Search },
     { name: "Talent", href: "/talent", icon: Users },
     { name: "Consulting & Services", href: "/services", icon: Briefcase },
     { name: "Blog", href: "/blogs", icon: PenTool },

@@ -37,9 +37,10 @@ export default function ApplyForm() {
     }
 
     console.log("Form submitted:", form);
-
+    window.alert("Form submitted")
     // 3. Navigate to the desired path
-    router.push("/profile-controller");
+    // router.push("/profile-controller");
+    
   };
 
   return (
