@@ -1,15 +1,18 @@
 import "./globals.css";
-import Header from "../components/Navbar";
 import React from "react"; 
 import Footer from "@/components/Footer";
 import Navbar from "../components/Navbar";
 
 export const metadata = {
-  title: "My Next App",
+  title: "E-Digital Pakistan",
   description: "Next.js App with Responsive Header",
+  icons: {
+    icon: "/images/EDP-icon.png",
+    shortcut: "/images/EDP-icon.png",
+    apple: "/images/EDP-icon.png",
+  },
 };
 
-// We define the type for the props here
 export default function RootLayout({
   children,
 }: {
@@ -17,10 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="antialiased">
         <Navbar />
         {children}
-      <Footer />
+        <Footer />
       </body>
     </html>
   );

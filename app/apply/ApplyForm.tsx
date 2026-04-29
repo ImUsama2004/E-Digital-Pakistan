@@ -1,10 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-// Added Eye, EyeOff, Mail, and User icons
+// 1. Import useRouter
+import { useRouter } from "next/navigation"; 
 import { Eye, EyeOff, Mail, User, Briefcase } from "lucide-react";
 
 export default function ApplyForm() {
+  // 2. Initialize the router
+  const router = useRouter(); 
+
   const [form, setForm] = useState({
     role: "",
     fullName: "",
@@ -25,7 +29,18 @@ export default function ApplyForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Simple validation check before navigating
+    if (form.password !== form.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
     console.log("Form submitted:", form);
+    window.alert("Form submitted")
+    // 3. Navigate to the desired path
+    // router.push("/profile-controller");
+    // 
   };
 
   return (
