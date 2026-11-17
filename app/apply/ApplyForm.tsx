@@ -62,7 +62,7 @@ export default function ApplyForm() {
       >
         {/* Role Selector */}
         <div>
-          <label className="block text-sm font-medium text-gray-700">I'm applying as…</label>
+          <label className="block text-sm font-medium text-gray-700">I&apos;m applying as…</label>
           <div className="relative mt-1">
             <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
               <Briefcase size={18} />

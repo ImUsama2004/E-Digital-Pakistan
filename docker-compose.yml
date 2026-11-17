@@ -1,0 +1,22 @@
+services:
+  web:
+    build:
+      context: .
+    image: e-digital-pakistan:local
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp
+      # Next.js image-optimization cache; owned by the non-root user (uid 1001)
+      - /app/.next/cache:uid=1001,gid=1001
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512M

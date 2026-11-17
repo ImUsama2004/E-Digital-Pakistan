@@ -44,8 +44,8 @@ const Hero: React.FC<HeroProps> = ({ id }) => {
           className="text-gray-400 text-base md:text-lg leading-relaxed max-w-2xl mx-auto"
         >
           {/* You can now use the 'id' here if you want to customize the text per service */}
-          In today's world, an app speaks volumes. With a simple pressing of a button, 
-          customers can access your entire business in the virtual arena and that's 
+          In today&apos;s world, an app speaks volumes. With a simple pressing of a button, 
+          customers can access your entire business in the virtual arena and that&apos;s 
           exactly where we come in. Service Reference: {id}
         </motion.p>
       </div>

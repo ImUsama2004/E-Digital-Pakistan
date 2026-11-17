@@ -121,25 +121,28 @@ function Counter({ value, label }: { value: number; label: string }) {
 /* ================= MAIN COMPONENT ================= */
 
 export default function AboutPage() {
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+  const [teamMembers] = useState<TeamMember[]>(MOCK_TEAM_DATA);
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    setTeamMembers(MOCK_TEAM_DATA);
-  }, []);
+    if (!isModalOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isModalOpen]);
 
   const openBio = (id: number) => {
     const index = teamMembers.findIndex((m) => m.id === id);
     setCurrentIndex(index);
     setIsModalOpen(true);
-    document.body.style.overflow = 'hidden';
   };
 
   const closeBio = () => {
     setIsModalOpen(false);
     setCurrentIndex(null);
-    document.body.style.overflow = 'auto';
   };
 
   const nextMember = () =>

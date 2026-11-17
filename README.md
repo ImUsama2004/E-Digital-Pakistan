@@ -34,3 +34,25 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+1. Ingress kubernetes 
+2. kube service types and deploy Argo CD with helm
+3. Istio deployment and use gateway and virtual service for routing.
+4. Grafana Monitoring Stack (Prometheus, Loki(promtail), Grafana Dashboard setup, grafana alloy) -> kube promtheus stack 
+
+5. AI agents with langchain and lang-graph
+6. Fast API project
+7. RAG System
+8. Kafka or AWS SQS
+
+Next
+1. Flyte
+2. Ray
+3. AI Reviewer
+4. AI gateways (LiteLLM, Bifrost)
+5. vLLM
+6. Internal Development Platforms (Backstage)
+7. model finetuning 
+8. Logto and azure entra id
+9. vCluter

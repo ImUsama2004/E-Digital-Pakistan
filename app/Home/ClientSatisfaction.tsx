@@ -63,7 +63,7 @@ export default function ClientSatisfaction() {
         {/* Header */}
         <div className="text-center mb-16 border-b border-gray-100 pb-12">
           <h2 className="text-3xl md:text-5xl font-bold text-[#1a2b3b] mb-6 tracking-tight">
-            Our Clients' Satisfaction is Our Top Priority
+            Our Clients&apos; Satisfaction is Our Top Priority
           </h2>
           <p className="text-gray-500 text-lg max-w-3xl mx-auto leading-relaxed">
             We have a reputation for helping clients around the world find success on their most important projects.
@@ -107,7 +107,7 @@ export default function ClientSatisfaction() {
               <Quote className="text-slate-200 mb-6 group-hover:text-[#00d37f] transition-colors" size={32} />
               
               <p className="text-gray-600 text-[15px] leading-relaxed mb-8 flex-1">
-                "{t.quote}"
+                &ldquo;{t.quote}&rdquo;
               </p>
               
               <div className="flex gap-0.5 mb-8">

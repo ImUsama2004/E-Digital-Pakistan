@@ -1,0 +1,25 @@
+
+# Host-based routing for E-Digital Pakistan
+# Local Kind cluster with Helm-managed Traefik
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+
+metadata:
+  name: edp-web
+  namespace: edp
+
+spec:
+  ingressClassName: traefik
+
+  rules:
+    - host: edp.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: edp-web
+                port:
+                  name: http

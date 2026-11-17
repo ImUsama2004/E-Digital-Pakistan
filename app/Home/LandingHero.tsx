@@ -49,7 +49,7 @@ export default function ToptalHero() {
 
       {/* Navigation Toggle */}
       <div className="flex items-center justify-center gap-4 mb-8 w-full">
-        <p className="text-[14px] font-semibold text-gray-500 whitespace-nowrap">I'm looking for</p>
+        <p className="text-[14px] font-semibold text-gray-500 whitespace-nowrap">I&apos;m looking for</p>
         <div className="flex items-center bg-[#d9dde7] rounded-full p-1 border border-white/30 shadow-sm">
           <div className="flex bg-white/40 rounded-full p-1">
             <button 
@@ -83,7 +83,7 @@ export default function ToptalHero() {
                   Hire the <span className="underline decoration-[#c1c7d6] underline-offset-4 lg:underline-offset-8 decoration-2">Top 3%</span> of World Talent
                 </h1>
                 <p className="mt-6 text-[17px] text-[#53575e] max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                  Toptal is an exclusive network of the world's top developers, designers, and finance experts.
+                  Toptal is an exclusive network of the world&apos;s top developers, designers, and finance experts.
                 </p>
                 <button className="mt-8 w-full sm:w-auto bg-[#2aecb2] text-white px-10 py-4 rounded-md font-bold text-base shadow-lg hover:shadow-2xl active:scale-95 transition-all">
                   Hire Top Talent

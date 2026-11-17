@@ -71,7 +71,7 @@ export default function Footer() {
                 <span className="w-1.5 h-1.5 bg-[#0083c0] rounded-full"></span>
               </div>
               <span className="text-white/85 text-xs italic hidden sm:block font-medium">
-                The World's Top Talent, On Demand®
+                The World&apos;s Top Talent, On Demand®
               </span>
             </div>
 
