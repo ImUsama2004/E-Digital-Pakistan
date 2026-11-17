@@ -1,7 +1,38 @@
+
 variable "aws_region" {
   description = "AWS region to deploy into."
   type        = string
-  default     = "ap-south-1"
+  default     = "ap-southeast-2"
+}
+
+variable "project_name" {
+  description = "Project name for AWS resource naming."
+  type        = string
+  default     = "e-digital-pakistan"
+}
+
+variable "environment" {
+  description = "Deployment environment."
+  type        = string
+  default     = "dev"
+}
+
+variable "vpc_cidr" {
+  description = "CIDR block for the custom VPC."
+  type        = string
+  default     = "10.0.0.0/16"
+}
+
+variable "public_subnet_cidr" {
+  description = "CIDR block for the public subnet."
+  type        = string
+  default     = "10.0.1.0/24"
+}
+
+variable "availability_zone" {
+  description = "Availability Zone for the public subnet."
+  type        = string
+  default     = "ap-southeast-2a"
 }
 
 variable "instance_type" {
@@ -10,24 +41,8 @@ variable "instance_type" {
   default     = "t3.micro"
 }
 
-variable "docker_image" {
-  description = "Docker Hub repository to run."
-  type        = string
-  default     = "muhammadusamasaeed/e-digital-pakistan"
-}
-
-variable "image_tag" {
-  description = "Image tag to deploy (use a commit SHA from CI; no default on purpose, never 'latest')."
-  type        = string
-
-  validation {
-    condition     = var.image_tag != "latest" && length(var.image_tag) > 0
-    error_message = "Pin image_tag to a specific commit SHA, not 'latest'."
-  }
-}
-
 variable "allowed_http_cidrs" {
-  description = "CIDR blocks allowed to reach HTTP/HTTPS."
+  description = "CIDR blocks allowed to access HTTP and HTTPS."
   type        = list(string)
   default     = ["0.0.0.0/0"]
 }
