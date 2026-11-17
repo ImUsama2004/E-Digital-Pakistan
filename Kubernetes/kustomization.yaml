@@ -6,6 +6,7 @@ resources:
   - deployment.yaml
   - service.yaml
   - ingress.yaml
+  - hpa.yaml
 images:
   - name: muhammadusamasaeed/e-digital-pakistan
-    newTag: 957e8b722551d2182288bd26dc3b5defc63fd397
+    newTag: 15bd04aa610965d082ad5a732b4ed1ffba99e5c1
