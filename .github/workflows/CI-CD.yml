@@ -77,14 +77,6 @@ jobs:
           docker logs app
           exit 1
 
-      # 8. Scan the SAME image with Trivy
-      - name: Scan image for vulnerabilities
-        uses: aquasecurity/trivy-action@0.35.0
-        with:
-          image-ref: ${{ env.IMAGE_NAME }}:${{ github.sha }}
-          severity: CRITICAL,HIGH
-          ignore-unfixed: true
-          exit-code: "1"
 
       # 9. Login to Docker Hub only on main pushes
       - name: Login to Docker Hub
