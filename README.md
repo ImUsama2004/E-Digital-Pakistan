@@ -56,4 +56,3 @@ Next
 7. model finetuning 
 8. Logto and azure entra id
 9. vCluter
-10.hhhhh
