@@ -33,3 +33,13 @@ output "instance_id" {
   description = "EC2 instance ID for AWS Systems Manager access."
   value       = aws_instance.web.id
 }
+
+output "ecr_repository_url" {
+  description = "URL of the E-Digital Pakistan ECR repository."
+  value       = aws_ecr_repository.edp.repository_url
+}
+
+output "ecr_repository_arn" {
+  description = "ARN of the E-Digital Pakistan ECR repository."
+  value       = aws_ecr_repository.edp.arn
+}
