@@ -52,3 +52,9 @@ variable "root_volume_size" {
   type        = number
   default     = 20
 }
+
+
+variable "alert_email" {
+  description = "Email address for EC2 CloudWatch alarm notifications"
+  type        = string
+}
